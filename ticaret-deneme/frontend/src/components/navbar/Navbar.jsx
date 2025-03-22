@@ -7,7 +7,7 @@ import { useSearch } from "../../context/SearchContext";
 import { useFilter } from "../../context/FilterContext";
 import "./Navbar.css";
 import logo from "../../images/logo.png";
-import Cart from '../cart/Cart';
+import Cart from '../Cart/Cart';
 import { IconButton, Menu, MenuItem } from '@mui/material';
 import CategoryIcon from '@mui/icons-material/Category';
 
