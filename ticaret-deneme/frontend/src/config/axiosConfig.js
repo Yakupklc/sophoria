@@ -1,7 +1,9 @@
 import axios from "axios";
 
-// API URL'sini ortama göre belirleme
-const baseURL = import.meta.env.VITE_API_URL || "https://sophoria-api.vercel.app/api";
+// API URL'sini ortama göre belirleme - Geliştirme ortamında tam URL, üretimde relative URL
+const baseURL = import.meta.env.DEV 
+  ? import.meta.env.VITE_API_URL || "http://localhost:5001/api" 
+  : "/api"; // Production'da Netlify proxy'sini kullanmak için relative path
 
 const axiosInstance = axios.create({
   baseURL,
