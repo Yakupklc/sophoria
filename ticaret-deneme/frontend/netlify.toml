@@ -2,7 +2,30 @@
   command = "npm run build"
   publish = "dist"
   base = "ticaret-deneme/frontend"
+  functions = "netlify/functions"
 
+# Auth proxy için özel yönlendirmeler
+[[redirects]]
+  from = "/api/auth/*"
+  to = "/.netlify/functions/api/auth/:splat"
+  status = 200
+  force = true
+
+# Ürünler için özel yönlendirme
+[[redirects]]
+  from = "/api/products"
+  to = "/.netlify/functions/api/products"
+  status = 200
+  force = true
+
+# Genel API yönlendirmesi
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+  force = true
+
+# SPA yönlendirmesi
 [[redirects]]
   from = "/*"
   to = "/index.html"
