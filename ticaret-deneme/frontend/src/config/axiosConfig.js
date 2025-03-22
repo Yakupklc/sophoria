@@ -3,7 +3,7 @@ import axios from "axios";
 // API URL'sini ortama göre belirleme
 const baseURL = import.meta.env.DEV 
   ? import.meta.env.VITE_API_URL || "http://localhost:5001/api"
-  : "https://sophoria-api.vercel.app/api"; // Doğrudan API URL'sini kullan
+  : "/api"; // Üretimde Netlify function proxy'sini kullanacak
 
 console.log("Current API baseURL:", baseURL);
 
@@ -22,9 +22,6 @@ axiosInstance.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
-    
-    // CORS için headers ekle
-    config.headers["Access-Control-Allow-Origin"] = "*";
     
     console.log("API Request:", config.method, config.url);
     return config;
