@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:5001/api";
+// API URL'sini ortama göre belirleme
+const baseURL = import.meta.env.VITE_API_URL || "https://sophoria-api.vercel.app/api";
 
 const axiosInstance = axios.create({
   baseURL,
