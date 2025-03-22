@@ -4,6 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const app = express();
+const router = express.Router();
 
 // Middleware
 app.use(cors());
@@ -17,7 +18,7 @@ app.use((req, res, next) => {
 });
 
 // Auth Routes
-app.post('/api/auth/login', (req, res) => {
+router.post('/auth/login', (req, res) => {
   console.log('Login isteği alındı:', req.body);
   
   // Mock login yanıtı
@@ -33,7 +34,7 @@ app.post('/api/auth/login', (req, res) => {
   res.json(userData);
 });
 
-app.post('/api/auth/register', (req, res) => {
+router.post('/auth/register', (req, res) => {
   console.log('Register isteği alındı:', req.body);
   
   // Mock register yanıtı
@@ -50,7 +51,7 @@ app.post('/api/auth/register', (req, res) => {
 });
 
 // Products Route
-app.get('/api/products', (req, res) => {
+router.get('/products', (req, res) => {
   console.log('Ürünler isteği alındı');
   
   const mockProducts = [
@@ -75,8 +76,16 @@ app.get('/api/products', (req, res) => {
   res.json(mockProducts);
 });
 
+// Base endpoint - sağlık kontrolü
+router.get('/', (req, res) => {
+  res.json({
+    message: 'API çalışıyor',
+    timestamp: new Date().toISOString()
+  });
+});
+
 // Catch-all route
-app.all('*', (req, res) => {
+router.all('*', (req, res) => {
   console.log('Bilinmeyen istek:', req.method, req.path);
   res.status(404).json({ 
     message: 'Endpoint bulunamadı',
@@ -84,6 +93,9 @@ app.all('*', (req, res) => {
     method: req.method
   });
 });
+
+// Router'ı kullan - Netlify Functions yapısı için
+app.use('/api', router);
 
 // serverless-http ile sarmalama
 module.exports.handler = serverless(app); 
