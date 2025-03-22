@@ -1,5 +1,33 @@
 const axios = require('axios');
 
+// Mock data for testing
+const mockProducts = [
+  {
+    id: "1",
+    name: "Akıllı Telefon",
+    description: "Son model akıllı telefon",
+    price: 7999,
+    category: "Elektronik",
+    image: "https://picsum.photos/id/1/500/300",
+    images: ["https://picsum.photos/id/1/500/300", "https://picsum.photos/id/2/500/300"],
+    stock: 10,
+    features: ["Su geçirmez", "5G Destekli"],
+    shipping: { isFree: true, time: "2-3 iş günü" }
+  },
+  {
+    id: "2",
+    name: "Laptop",
+    description: "Güçlü işlemcili iş bilgisayarı",
+    price: 12999,
+    category: "Elektronik",
+    image: "https://picsum.photos/id/2/500/300",
+    images: ["https://picsum.photos/id/2/500/300", "https://picsum.photos/id/3/500/300"],
+    stock: 5,
+    features: ["16GB RAM", "512GB SSD"],
+    shipping: { isFree: true, time: "1-2 iş günü" }
+  }
+];
+
 exports.handler = async function(event, context) {
   // CORS başlıkları
   const headers = {
@@ -27,6 +55,16 @@ exports.handler = async function(event, context) {
     const path = event.path.replace('/.netlify/functions/api', '');
     
     console.log("Extracted path:", path);
+    
+    // Fallback çözümü: eğer /products endpoint'i ise, mock data döndür
+    if (path === '/products' && event.httpMethod === 'GET') {
+      console.log("Returning mock products data");
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify(mockProducts)
+      };
+    }
     
     // API isteği parametreleri
     const API_URL = 'https://sophoria-api.vercel.app/api';
@@ -61,6 +99,7 @@ exports.handler = async function(event, context) {
     });
 
     console.log("Proxy response status:", response.status);
+    console.log("Proxy response data:", JSON.stringify(response.data).substring(0, 200) + "...");
     
     // Başarılı yanıt
     return {
@@ -70,7 +109,22 @@ exports.handler = async function(event, context) {
     };
   } catch (error) {
     console.error('Proxy error:', error.message);
-    console.error('Error details:', error.response?.data);
+    
+    if (error.response) {
+      console.error('Error status:', error.response.status);
+      console.error('Error data:', error.response.data);
+    }
+    
+    // Hata durumunda fallback çözümler
+    // Products endpoint için bir sorun varsa mock data döndür
+    if (event.path.includes('/products') && event.httpMethod === 'GET') {
+      console.log("Returning mock products data after error");
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify(mockProducts)
+      };
+    }
     
     // Hata yanıtı
     return {

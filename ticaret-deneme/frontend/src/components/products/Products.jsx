@@ -9,6 +9,38 @@ import { getCurrentUser, isLoggedIn } from "../../utils/authUtils";
 import LoginModal from "../LoginModal/LoginModal"
 import "./Products.css";
 
+// Varsayılan ürünler - API down olduğunda gösterilecek
+const defaultProducts = [
+  {
+    _id: "1",
+    name: "Akıllı Telefon",
+    description: "Son model akıllı telefon",
+    price: 7999,
+    category: "Elektronik",
+    image: "https://picsum.photos/id/1/500/300",
+    images: ["https://picsum.photos/id/1/500/300", "https://picsum.photos/id/2/500/300"],
+    stock: 10,
+    rating: { average: 4.5, count: 120 },
+    createdAt: new Date().toISOString(),
+    features: ["Su geçirmez", "5G Destekli"],
+    shipping: { isFree: true, time: "2-3 iş günü" }
+  },
+  {
+    _id: "2",
+    name: "Laptop",
+    description: "Güçlü işlemcili iş bilgisayarı",
+    price: 12999,
+    category: "Elektronik",
+    image: "https://picsum.photos/id/2/500/300",
+    images: ["https://picsum.photos/id/2/500/300", "https://picsum.photos/id/3/500/300"],
+    stock: 5,
+    rating: { average: 4.2, count: 85 },
+    createdAt: new Date().toISOString(),
+    features: ["16GB RAM", "512GB SSD"],
+    shipping: { isFree: true, time: "1-2 iş günü" }
+  }
+];
+
 const Products = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
@@ -49,21 +81,45 @@ const Products = () => {
   };
 
   const normalizeRating = (productData) => {
-    let normalizedRating = { average: 0, count: 0 };
-    if (productData.rating) {
-      if (typeof productData.rating === 'object') {
-        if (productData.rating.average !== undefined) {
-          normalizedRating.average = isNaN(parseFloat(productData.rating.average)) ? 0 : parseFloat(productData.rating.average);
-          normalizedRating.count = isNaN(parseInt(productData.rating.count)) ? 0 : parseInt(productData.rating.count);
-        } else if (productData.rating.avg !== undefined) {
-          normalizedRating.average = isNaN(parseFloat(productData.rating.avg)) ? 0 : parseFloat(productData.rating.avg);
-          normalizedRating.count = isNaN(parseInt(productData.rating.total)) ? 0 : parseInt(productData.rating.total);
+    try {
+      let normalizedRating = { average: 0, count: 0 };
+      
+      if (productData.rating) {
+        if (typeof productData.rating === 'object') {
+          if (productData.rating.average !== undefined) {
+            normalizedRating.average = isNaN(parseFloat(productData.rating.average)) ? 0 : parseFloat(productData.rating.average);
+            normalizedRating.count = isNaN(parseInt(productData.rating.count)) ? 0 : parseInt(productData.rating.count);
+          } else if (productData.rating.avg !== undefined) {
+            normalizedRating.average = isNaN(parseFloat(productData.rating.avg)) ? 0 : parseFloat(productData.rating.avg);
+            normalizedRating.count = isNaN(parseInt(productData.rating.total)) ? 0 : parseInt(productData.rating.total);
+          }
+        } else if (typeof productData.rating === 'number') {
+          normalizedRating.average = productData.rating;
         }
-      } else if (typeof productData.rating === 'number') {
-        normalizedRating.average = productData.rating;
       }
+      
+      // Eğer _id yoksa, geçici bir ID ekleyelim
+      if (!productData._id && productData.id) {
+        productData._id = productData.id;
+      } else if (!productData._id && !productData.id) {
+        productData._id = Math.random().toString(36).substring(2, 15);
+      }
+      
+      // Eğer createdAt yoksa, şimdiki zamanı ekleyelim
+      if (!productData.createdAt) {
+        productData.createdAt = new Date().toISOString();
+      }
+      
+      return { ...productData, rating: normalizedRating };
+    } catch (error) {
+      console.error("Ürün normalize edilirken hata:", error, productData);
+      return { 
+        ...productData, 
+        _id: productData._id || Math.random().toString(36).substring(2, 15),
+        rating: { average: 0, count: 0 },
+        createdAt: productData.createdAt || new Date().toISOString()
+      };
     }
-    return { ...productData, rating: normalizedRating };
   };
 
   useEffect(() => {
@@ -71,14 +127,46 @@ const Products = () => {
       try {
         const params = selectedCategory ? { category: selectedCategory } : {};
         const productsResponse = await axiosInstance.get('/products', { params });
-        const normalizedProducts = productsResponse.data
+        
+        console.log("API Response:", productsResponse);
+        
+        let productsList = [];
+        // API'den gelen veriyi kontrol et
+        if (productsResponse.data) {
+          // Eğer data bir array ise doğrudan kullan
+          if (Array.isArray(productsResponse.data)) {
+            productsList = productsResponse.data;
+          } 
+          // Eğer data içinde products veya items gibi bir array varsa onu kullan
+          else if (productsResponse.data.products && Array.isArray(productsResponse.data.products)) {
+            productsList = productsResponse.data.products;
+          }
+          else if (productsResponse.data.items && Array.isArray(productsResponse.data.items)) {
+            productsList = productsResponse.data.items;
+          }
+          // Hiçbiri yoksa varsayılan ürünleri kullan
+          else {
+            console.warn("API yanıtında ürün dizisi bulunamadı, varsayılan ürünler kullanılıyor");
+            productsList = defaultProducts;
+          }
+        } else {
+          console.warn("API yanıtı beklenen formatta değil, varsayılan ürünler kullanılıyor");
+          productsList = defaultProducts;
+        }
+        
+        // Ürünleri normalize et ve tarihe göre sırala
+        const normalizedProducts = productsList
           .map(normalizeRating)
           .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+          
+        console.log("Normalized Products:", normalizedProducts);
+        
         setProducts(normalizedProducts);
         setLoading(false);
       } catch (error) {
         console.error("Ürünler yüklenirken hata:", error);
-        setError('Ürünler yüklenirken bir hata oluştu');
+        setError('Ürünler yüklenirken bir hata oluştu, varsayılan ürünler gösteriliyor.');
+        setProducts(defaultProducts.map(normalizeRating));
         setLoading(false);
       }
     };

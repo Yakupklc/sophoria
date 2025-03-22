@@ -7,7 +7,7 @@ console.log("Is prod?", import.meta.env.PROD);
 // API URL'sini ortama göre belirleme
 const baseURL = import.meta.env.DEV 
   ? import.meta.env.VITE_API_URL || "http://localhost:5001/api"
-  : "";  // Boş bırakarak rölatif URL kullan
+  : "/api";  // Netlify yönlendirmesi için /api kullan
 
 console.log("Current API baseURL:", baseURL);
 
@@ -27,12 +27,19 @@ axiosInstance.interceptors.request.use(
       config.headers.Authorization = `Bearer ${token}`;
     }
     
-    // Production ortamında tam yol oluştur
-    if (import.meta.env.PROD && !config.url.startsWith('/api/')) {
-      config.url = `/api${config.url}`;
+    // URL'i düzeltme - başında zaten /api/ varsa tekrar ekleme
+    if (import.meta.env.PROD && !config.url.startsWith('/api/') && !config.url.startsWith('api/')) {
+      if (config.url.startsWith('/')) {
+        config.url = `/api${config.url}`;
+      } else {
+        config.url = `/api/${config.url}`;
+      }
     }
     
-    console.log("API Request:", config.method, config.url);
+    console.log("API Request URL:", config.url);
+    console.log("API Request Method:", config.method);
+    console.log("API Request Headers:", config.headers);
+    
     return config;
   },
   (error) => {
@@ -45,10 +52,12 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (response) => {
     console.log("API Response Success:", response.status);
+    console.log("API Response Data:", response.data);
     return response;
   },
   (error) => {
     console.error("API Response Error:", error.message, error.response?.status);
+    console.error("API Response Error Data:", error.response?.data);
     
     // 401 hatasını Login bileşeni ele alsın, yönlendirme yapma
     if (error.response?.status === 401) {
