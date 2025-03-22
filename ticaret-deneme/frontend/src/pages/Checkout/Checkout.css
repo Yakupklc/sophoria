@@ -1,0 +1,690 @@
+/* Ana Container */
+.checkout-page {
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #f8f9fa;
+  color: #212529;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.checkout-page.has-navbar {
+  padding-top: 60px;
+}
+
+/* Header Bölümü */
+.checkout-page .checkout-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.checkout-page .steps {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.checkout-page .step {
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  border-radius: 20px;
+  background-color: #ffffff;
+  color: #6c757d;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.checkout-page .step.active {
+  background-color: #0d6efd;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(13, 110, 253, 0.25);
+}
+
+.checkout-page .step.completed {
+  background-color: #198754;
+  color: #ffffff;
+}
+
+.checkout-page .step-icon {
+  margin-right: 10px;
+}
+
+.checkout-page .step-connector {
+  color: #6c757d;
+  margin: 0 5px;
+}
+
+/* Ana İçerik */
+.checkout-page .checkout-content {
+  display: flex;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Checkout Main - Koyu Moddan Etkilenmez (Her Zaman Beyaz) */
+.checkout-page .checkout-main {
+  flex: 1;
+  background-color: #ffffff !important; /* Koyu modda bile beyaz kalmasını sağla */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #212529 !important; /* Metin rengi Light Mode’da sabit */
+  transition: none; /* Koyu mod geçişini devre dışı bırak */
+}
+
+/* Form Alanları - Koyu Mod Kaldırıldı */
+.checkout-page .shipping-form h2 {
+  font-size: 1.5rem;
+  margin-bottom: 24px;
+  color: #212529;
+}
+
+.checkout-page .form-row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.checkout-page .form-field {
+  flex: 1;
+}
+
+/* Input alanları için yeni stil - her zaman açık tema */
+.light-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  background-color: #ffffff !important;
+  color: #212529 !important;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.light-input:focus {
+  outline: none;
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+}
+
+/* Form label stilleri */
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #212529;
+}
+
+/* Sipariş Özeti */
+.checkout-page .order-summary-container {
+  width: 380px;
+  background-color: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+  position: sticky;
+  top: 20px;
+}
+
+.checkout-page .order-summary h2 {
+  font-size: 1.5rem;
+  margin-bottom: 24px;
+  color: #212529;
+}
+
+/* Ürün Listesi */
+.checkout-page .order-items {
+  max-height: 50vh;
+  overflow-y: auto;
+  margin-bottom: 24px;
+  padding-right: 10px;
+}
+
+.checkout-page .order-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  transition: transform 0.2s ease;
+}
+
+.checkout-page .order-item:hover {
+  transform: translateY(-2px);
+}
+
+.checkout-page .order-item-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 15px;
+}
+
+/* Ürün Detayları */
+.checkout-page .order-item-details h3 {
+  font-size: 1.1rem;
+  margin: 0 0 8px 0;
+  color: #212529;
+  font-weight: 600;
+}
+
+.checkout-page .order-item-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+/* Miktar Kontrolleri */
+.checkout-page .quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #ffffff;
+  padding: 4px;
+  border-radius: 6px;
+}
+
+.checkout-page .quantity {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #000000;
+  min-width: 24px;
+  text-align: center;
+  background: #ffffff;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.checkout-page .quantity-button {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #212529;
+}
+
+.checkout-page .quantity-button:hover:not(:disabled) {
+  background-color: #0d6efd;
+  color: #ffffff;
+  border-color: #0d6efd;
+}
+
+.checkout-page .quantity-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Ürün fiyat gösterimi güncellendi */
+.checkout-page .order-item-price {
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.checkout-page .order-item-price strong {
+  font-size: 1.1rem;
+  color: #212529;
+}
+
+/* Toplam Alanı */
+.checkout-page .order-summary-totals {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 24px;
+}
+
+.checkout-page .summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  font-size: 1rem;
+  color: #212529;
+}
+
+.checkout-page .summary-row.total {
+  font-weight: 700;
+  font-size: 1.2rem;
+  border-top: 2px solid #dee2e6;
+  margin-top: 10px;
+  padding-top: 15px;
+}
+
+/* Butonlar */
+.checkout-page .primary-button {
+  width: 100%;
+  padding: 16px;
+  background-color: #0d6efd;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.checkout-page .primary-button:hover:not(:disabled) {
+  background-color: #0b5ed7;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.25);
+}
+
+.checkout-page .primary-button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Boş Sepet - Modernize Edilmiş Tasarım (LoginPage’e Benzer) */
+.empty-cart-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 3rem;
+  text-align: center;
+  background-color: #ffffff !important; /* Koyu modda bile beyaz kalmasını sağla */
+  border-radius: 20px; /* Daha yuvarlak köşeler */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Daha belirgin gölge */
+  margin: 2rem auto;
+  max-width: 480px; /* Daha modern bir genişlik */
+  color: #212529 !important; /* Metin rengi Light Mode’da sabit */
+  transition: none; /* Koyu mod geçişini devre dışı bırak */
+}
+
+.empty-cart-message svg {
+  color: #6c757d;
+  margin-bottom: 1.5rem;
+  width: 64px;
+  height: 64px;
+  animation: bounce 2s infinite; /* Hafif animasyon eklemek için */
+}
+
+.empty-cart-message h2 {
+  font-size: 2rem;
+  margin: 1rem 0;
+  color: #212529;
+  font-weight: 700; /* Daha kalın yazı */
+  text-transform: uppercase; /* Büyük harfler */
+}
+
+.empty-cart-message p {
+  color: #6c757d;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  max-width: 400px; /* Metni daha kompakt hale getir */
+  line-height: 1.6; /* Daha okunabilir metin */
+}
+
+.continue-shopping-button {
+  padding: 12px 24px;
+  background-color: #0d6efd;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.continue-shopping-button:hover {
+  background-color: #0b5ed7;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.25);
+}
+
+/* Ödeme Yöntemi - Modernize Edilmiş Tasarım */
+.checkout-page .payment-section {
+  padding: 30px 0;
+  background-color: #ffffff !important; /* Koyu modda bile beyaz kalmasını sağla */
+  border-radius: 12px; /* Daha yuvarlak köşeler */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Modern gölge */
+  margin: 0 auto;
+  max-width: 600px; /* Daha kompakt genişlik */
+  color: #212529 !important; /* Metin rengi Light Mode’da sabit */
+  transition: none; /* Koyu mod geçişini devre dışı bırak */
+}
+
+.checkout-page .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0 20px; /* Daha modern padding */
+}
+
+.checkout-page .section-header h2 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: #212529;
+  font-weight: 600; /* Daha kalın yazı */
+}
+
+.checkout-page .back-button {
+  padding: 10px 20px;
+  background: transparent;
+  border: 1px solid #0d6efd;
+  border-radius: 8px; /* Daha yuvarlak köşeler */
+  color: #0d6efd;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  font-weight: 500; /* Daha modern yazı tipi ağırlığı */
+}
+
+.checkout-page .back-button:hover {
+  background-color: #0d6efd;
+  color: #ffffff;
+  transform: translateY(-2px); /* Hafif yukarı hareket */
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.25); /* Modern gölge */
+}
+
+.checkout-page .payment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+  padding: 0 20px; /* Daha modern padding */
+}
+
+.checkout-page .payment-option {
+  display: flex;
+  align-items: center;
+  padding: 16px; /* Daha modern padding */
+  border: 2px solid #dee2e6;
+  border-radius: 12px; /* Daha yuvarlak köşeler */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #ffffff; /* Koyu modda bile beyaz */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Hafif gölge */
+}
+
+.checkout-page .payment-option:hover {
+  border-color: #0d6efd;
+  background-color: #f8f9fa; /* Hafif arka plan değişimi */
+  transform: translateY(-2px); /* Hafif yukarı hareket */
+  box-shadow: 0 6px 15px rgba(13, 110, 253, 0.15); /* Daha belirgin gölge */
+}
+
+.checkout-page .payment-option input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.checkout-page .option-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex: 1;
+}
+
+.checkout-page .option-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.checkout-page .option-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #212529;
+}
+
+.checkout-page .option-description {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.checkout-page .payment-option input[type="radio"]:checked + .option-content {
+  color: #0d6efd;
+}
+
+.checkout-page .payment-option:has(input[type="radio"]:checked) {
+  border-color: #0d6efd;
+  background-color: #e9ecef; /* Seçili durum için hafif arka plan */
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.15); /* Seçili durum gölgesi */
+}
+
+/* Dark Mode - Teslimat Bilgileri, Ödeme Yöntemleri ve Boş Sepet Hariç */
+@media (prefers-color-scheme: dark) {
+  .checkout-page {
+    background-color: #121212;
+    color: #ffffff;
+  }
+
+  .checkout-page .checkout-main {
+    background-color: #ffffff !important; /* Koyu modda beyaz kalır */
+    color: #212529 !important; /* Metin rengi sabit kalır */
+  }
+
+  .checkout-page .payment-section {
+    background-color: #ffffff !important; /* Koyu modda beyaz kalır */
+    color: #212529 !important; /* Metin rengi sabit kalır */
+  }
+
+  .checkout-page .back-button {
+    border-color: #0d6efd !important; /* Light Mode sınır rengi */
+    color: #0d6efd !important; /* Light Mode metin rengi */
+  }
+
+  .checkout-page .back-button:hover {
+    background-color: #0d6efd !important; /* Light Mode hover arka plan */
+    color: #ffffff !important; /* Light Mode hover metin rengi */
+  }
+
+  .checkout-page .payment-option {
+    background-color: #ffffff !important; /* Koyu modda beyaz kalır */
+    border-color: #dee2e6 !important; /* Light Mode sınır rengi */
+  }
+
+  .checkout-page .payment-option:hover {
+    background-color: #f8f9fa !important; /* Light Mode hover arka plan */
+    border-color: #0d6efd !important; /* Light Mode hover sınır rengi */
+  }
+
+  .checkout-page .payment-option input[type="radio"]:checked + .option-content {
+    color: #0d6efd !important; /* Light Mode seçili metin rengi */
+  }
+
+  .checkout-page .payment-option:has(input[type="radio"]:checked) {
+    background-color: #e9ecef !important; /* Light Mode seçili arka plan */
+    border-color: #0d6efd !important; /* Light Mode seçili sınır rengi */
+  }
+
+  .checkout-page .option-title {
+    color: #212529 !important; /* Light Mode metin rengi */
+  }
+
+  .checkout-page .option-description {
+    color: #6c757d !important; /* Light Mode açıklama rengi */
+  }
+
+  .checkout-page .order-summary-container {
+    background-color: #1e1e1e;
+    border-color: #2d2d2d;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .checkout-page .order-summary h2 {
+    color: #ffffff;
+  }
+
+  .checkout-page .order-item {
+    background-color: #2d2d2d;
+    border-color: #404040;
+  }
+
+  .checkout-page .order-item-details h3 {
+    color: #ffffff;
+  }
+
+  .checkout-page .quantity {
+    color: #ffffff;
+    background: #2d2d2d;
+  }
+
+  .checkout-page .quantity-controls {
+    background-color: #2d2d2d;
+  }
+
+  .checkout-page .quantity-button {
+    background-color: #404040;
+    border-color: #505050;
+    color: #ffffff;
+  }
+
+  .checkout-page .quantity-button:hover:not(:disabled) {
+    background-color: #0d6efd;
+  }
+
+  .checkout-page .order-item-price strong {
+    color: #ffffff;
+  }
+
+  .checkout-page .order-item-price span {
+    color: #b0b0b0;
+  }
+
+  .checkout-page .order-summary-totals {
+    background-color: #2d2d2d;
+  }
+
+  .checkout-page .summary-row {
+    color: #ffffff;
+  }
+
+  .checkout-page .summary-row.total {
+    border-top-color: #404040;
+  }
+
+  .checkout-page .step {
+    background-color: #2d2d2d;
+    color: #b0b0b0;
+  }
+
+  .empty-cart-message {
+    background-color: #ffffff !important; /* Koyu modda beyaz kalır */
+    color: #212529 !important; /* Metin rengi sabit kalır */
+  }
+
+  .empty-cart-message svg {
+    color: #6c757d;
+  }
+}
+
+/* Animasyon */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .checkout-page .order-summary-container {
+    width: 340px;
+  }
+}
+
+@media (max-width: 768px) {
+  .checkout-page .checkout-content {
+    flex-direction: column;
+  }
+  
+  .checkout-page .order-summary-container {
+    width: 100%;
+    margin-top: 20px;
+    position: static;
+  }
+  
+  .checkout-page .form-row {
+    flex-direction: column;
+  }
+
+  .checkout-page .payment-section {
+    max-width: 100%; /* Mobil cihazlarda tam genişlik */
+    margin: 0 1rem; /* Kenar boşlukları */
+    padding: 20px; /* Daha az padding */
+  }
+
+  .checkout-page .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 0 10px; /* Daha az padding */
+  }
+
+  .checkout-page .payment-options {
+    padding: 0 10px; /* Daha az padding */
+  }
+
+  .empty-cart-message {
+    margin: 1rem;
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkout-page {
+    padding: 15px;
+  }
+  
+  .checkout-page .order-item-image {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .checkout-page .order-item-details h3 {
+    font-size: 1rem;
+  }
+  
+  .checkout-page .quantity-button {
+    padding: 4px 8px;
+  }
+
+  .checkout-page .payment-section {
+    padding: 15px; /* Daha az padding */
+  }
+
+  .checkout-page .section-header h2 {
+    font-size: 1.25rem; /* Daha küçük başlık */
+  }
+
+  .checkout-page .back-button {
+    padding: 8px 16px; /* Daha küçük buton */
+    font-size: 0.8rem; /* Daha küçük yazı */
+  }
+
+  .checkout-page .payment-option {
+    padding: 12px; /* Daha az padding */
+  }
+
+  .empty-cart-message {
+    padding: 1.5rem;
+    margin: 0.5rem;
+    max-width: 90%;
+  }
+
+  .empty-cart-message h2 {
+    font-size: 1.5rem;
+  }
+
+  .empty-cart-message p {
+    font-size: 1rem;
+  }
+}

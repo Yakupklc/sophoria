@@ -1,0 +1,155 @@
+/* ProductModal.css */
+.product-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .product-modal-content {
+    background: #ffffff;
+    border-radius: 8px;
+    max-width: 650px;
+    width: 95%;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: modalFadeIn 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  .product-modal-header h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+  }
+  
+  .close-button {
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    color: #666;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  
+  .close-button:hover {
+    background-color: #f0f0f0;
+    color: #333;
+  }
+  
+  .product-modal-body {
+    padding: 20px;
+  }
+  
+  @keyframes modalFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Scrollbar stilini uyarla */
+  .product-modal-content::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .product-modal-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+  
+  .product-modal-content::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+  }
+  
+  .product-modal-content::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1;
+  }
+  
+  /* Koyu mod stilleri */
+  .dark-mode .product-modal-content {
+    background: #1e1e1e;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  .dark-mode .product-modal-header {
+    border-bottom-color: #444444;
+  }
+  
+  .dark-mode .product-modal-header h2 {
+    color: #e0e0e0;
+  }
+  
+  .dark-mode .close-button {
+    color: #aaaaaa;
+  }
+  
+  .dark-mode .close-button:hover {
+    background-color: #333333;
+    color: #ffffff;
+  }
+  
+  .dark-mode .product-modal-content::-webkit-scrollbar-track {
+    background: #2d2d2d;
+  }
+  
+  .dark-mode .product-modal-content::-webkit-scrollbar-thumb {
+    background: #666666;
+  }
+  
+  .dark-mode .product-modal-content::-webkit-scrollbar-thumb:hover {
+    background: #888888;
+  }
+  
+  /* Mobil düzenlemeler */
+  @media (max-width: 768px) {
+    .product-modal-content {
+      width: 95%;
+      max-height: 85vh;
+    }
+    
+    .product-modal-header {
+      padding: 15px;
+    }
+    
+    .product-modal-body {
+      padding: 15px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .product-modal-header {
+      padding: 12px;
+    }
+    
+    .product-modal-header h2 {
+      font-size: 18px;
+    }
+    
+    .product-modal-body {
+      padding: 12px;
+    }
+  }

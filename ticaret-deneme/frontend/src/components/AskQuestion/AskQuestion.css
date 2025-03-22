@@ -1,0 +1,230 @@
+/* Açık tema (varsayılan) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.question-modal {
+  background: var(--modal-bg, white);
+  border-radius: 20px; /* Footer temasına uygun yuvarlak köşeler */
+  width: 90%;
+  max-width: 400px; /* Daha kompakt bir boyut */
+  padding: 1.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  overflow: hidden; /* Taşmayı önlemek için eklendi */
+}
+
+.question-modal:hover {
+  transform: translateY(-2px); /* Hover efekti */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.modal-title {
+  color: var(--modal-text, #333);
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  padding: 0.4rem;
+  cursor: pointer;
+  color: var(--modal-text-secondary, #666);
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-button:hover {
+  background-color: var(--modal-button-alt-hover, #e8e8e8);
+  color: var(--modal-text, #333);
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow: hidden; /* Taşmayı önlemek için eklendi */
+  padding-left: 0.5rem; /* Sola hafif kaydırma eklendi */
+}
+
+.question-input {
+  width: 100%;
+  padding: 0.875rem;
+  border: 1px solid var(--modal-border, #eee);
+  border-radius: 10px; /* Footer temasına uygun yuvarlak köşeler */
+  resize: vertical;
+  font-size: 1rem;
+  color: var(--modal-text, #333);
+  background-color: var(--modal-input-bg, white);
+  transition: all 0.3s ease;
+  overflow: auto; /* Taşmayı kontrol etmek için */
+  word-wrap: break-word; /* Uzun kelimeleri bölmek için */
+  max-width: 100%; /* Genişliği modalın sınırlarına sabitle */
+}
+
+.question-input:focus {
+  outline: none;
+  border-color: var(--modal-focus-border, #2c5282);
+  box-shadow: 0 0 0 2px var(--modal-focus-shadow, rgba(44, 82, 130, 0.2));
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.cancel-button,
+.submit-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 10px; /* Footer temasına uygun yuvarlak köşeler */
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cancel-button {
+  background-color: var(--modal-button-alt-bg, #f5f5f5);
+  color: var(--modal-text-secondary, #666);
+  border: 1px solid var(--modal-button-alt-border, #ddd);
+}
+
+.cancel-button:hover {
+  background-color: var(--modal-button-alt-hover, #e8e8e8);
+  transform: translateY(-2px); /* Hover efekti */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button {
+  background: linear-gradient(135deg, #2c5282 0%, #1a365d 100%); /* Footer temasına uygun gradient */
+  color: var(--modal-button-text, white);
+}
+
+.submit-button:hover {
+  background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+  transform: translateY(-2px); /* Hover efekti */
+  box-shadow: 0 4px 15px rgba(44, 82, 130, 0.3);
+}
+
+.submit-button:disabled {
+  background: rgba(44, 82, 130, 0.6);
+  cursor: not-allowed;
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+  --modal-bg: #1a1a1a;
+  --modal-text: #e0e0e0;
+  --modal-text-secondary: #9e9e9e;
+  --modal-border: #2a2a2a;
+  --modal-input-bg: #272727;
+  --modal-button-alt-bg: #2a2a2a;
+  --modal-button-alt-border: #444;
+  --modal-button-alt-hover: #444;
+  --modal-button-text: white;
+  --modal-focus-border: #4d9aff;
+  --modal-focus-shadow: rgba(77, 154, 255, 0.25);
+}
+
+.dark-mode .modal-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.dark-mode .modal-content {
+  padding-left: 0.5rem; /* Koyu modda da sola kaydırma */
+}
+
+/* Responsive Tasarım (Tamamen Güncellendi) */
+@media (max-width: 768px) {
+  .question-modal {
+    width: 85%;
+    max-width: 380px;
+    padding: 1.2rem;
+  }
+
+  .modal-title {
+    font-size: 1.15rem;
+  }
+
+  .question-input {
+    padding: 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  .cancel-button,
+  .submit-button {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .modal-content {
+    padding-left: 0.3rem; /* Tablet için daha az kaydırma */
+  }
+}
+
+@media (max-width: 480px) {
+  .question-modal {
+    width: 90%;
+    max-width: 320px;
+    padding: 1rem;
+  }
+
+  .modal-title {
+    font-size: 1rem;
+  }
+
+  .question-input {
+    min-height: 80px; /* Daha kompakt */
+    padding: 0.625rem;
+    font-size: 0.9rem;
+  }
+
+  .cancel-button,
+  .submit-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .modal-footer {
+    gap: 0.5rem;
+  }
+
+  .modal-content {
+    padding-left: 0.2rem; /* Mobil için en az kaydırma */
+  }
+}
+
+@media (min-width: 769px) {
+  .question-modal {
+    max-width: 450px;
+  }
+
+  .modal-content {
+    padding-left: 0; /* Masaüstü için kaydırma yok */
+  }
+}

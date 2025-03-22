@@ -1,0 +1,775 @@
+/* Genel stiller */
+.profile-container {
+  margin: 20px auto 60px;
+  max-width: 1000px;
+  padding: 20px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 18px;
+  color: #666;
+}
+
+/* Buton stilleri */
+button {
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.edit-button,
+.save-button,
+.cancel-button,
+.add-product-button,
+.delete-button,
+.change-password-button {
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.edit-button {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.edit-button:hover {
+  background-color: #e0e0e0;
+}
+
+.save-button {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.save-button:hover {
+  background-color: #357abd;
+}
+
+.save-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.cancel-button {
+  background-color: #f0f0f0;
+  color: #666;
+}
+
+.cancel-button:hover {
+  background-color: #e0e0e0;
+}
+
+.cancel-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.add-product-button {
+  background-color: #4a90e2;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.add-product-button:hover {
+  background-color: #357abd;
+}
+
+.delete-button {
+  background-color: #e74c3c;
+  color: white;
+  padding: 5px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-button:hover {
+  background-color: #c0392b;
+}
+
+.change-password-button {
+  background-color: #2563eb;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.3s;
+}
+
+.change-password-button:hover {
+  background-color: #1d4ed8;
+}
+
+.button-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Form elementleri */
+input, select, textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  background: #f8fafc;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #4a90e2;
+  background: #fff;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+textarea {
+  min-height: 120px;
+  max-height: 300px;
+  resize: vertical;
+  overflow-y: auto;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.error {
+  border-color: #dc3545 !important;
+}
+
+.error-message {
+  background-color: #ffebeb;
+  color: #e74c3c;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  border-left: 4px solid #e74c3c;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.form-group small {
+  display: block;
+  color: #64748b;
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+/* Profile başlık kısmı */
+.profile-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  background-color: #f8f9fa;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+}
+
+.avatar svg {
+  color: #666;
+}
+
+.profile-header h1 {
+  font-size: 24px;
+  color: #333;
+}
+
+/* Ana içerik kısmı */
+.profile-content {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.info-section, .products-section, .profile-section {
+  padding: 25px;
+}
+
+.info-section h2, .products-section h2, .profile-section h2 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #333;
+}
+
+/* Bilgi grid kısmı */
+.info-grid {
+  display: grid;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.info-item svg {
+  color: #666;
+  width: 20px;
+  height: 20px;
+}
+
+.info-details {
+  flex: 1;
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.value {
+  font-size: 16px;
+  color: #333;
+}
+
+/* YENİ KOMPAKT ÜRÜN KARTLARI */
+.products-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.products-compact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.product-compact-item {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  background: white;
+  position: relative;
+}
+
+.product-compact-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.product-compact-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.product-compact-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.product-compact-item:hover .product-compact-image img {
+  transform: scale(1.05);
+}
+
+.product-price-badge {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: #4a90e2;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.product-compact-details {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-compact-details h3 {
+  margin: 0 0 10px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.product-compact-details h3:hover {
+  color: #4a90e2;
+}
+
+.product-compact-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.product-compact-actions .edit-button,
+.product-compact-actions .delete-button {
+  padding: 6px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.product-compact-actions .edit-button svg,
+.product-compact-actions .delete-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+.product-compact-actions .edit-button {
+  background-color: #f8f9fa;
+  color: #4a90e2;
+}
+
+.product-compact-actions .edit-button:hover {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.product-compact-actions .delete-button {
+  background-color: #f8f9fa;
+  color: #e74c3c;
+}
+
+.product-compact-actions .delete-button:hover {
+  background-color: #e74c3c;
+  color: white;
+}
+
+/* Orders Section */
+.orders-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.orders-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.order-card {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  gap: 0.75rem;
+  min-width: 0;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eee;
+}
+
+.order-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.order-item-preview {
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.order-item-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.order-card-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.order-number {
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.order-date {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.order-total {
+  color: #2c3e50;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* Medya sorguları */
+@media (min-width: 768px) {
+  .info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .products-compact-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 15px;
+  }
+  
+  .button-group {
+    flex-direction: column;
+  }
+  
+  .change-password-button,
+  .edit-button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .orders-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .products-compact-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+  }
+  
+  .product-compact-details {
+    padding: 8px;
+  }
+  
+  .product-compact-details h3 {
+    font-size: 13px;
+  }
+  
+  .product-price-badge {
+    padding: 3px 6px;
+    font-size: 12px;
+  }
+  
+  .product-compact-actions .edit-button,
+  .product-compact-actions .delete-button {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .orders-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .order-card {
+    padding: 0.875rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .products-compact-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Koyu mod stilleri */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #121212;
+    color: #cccccc;
+  }
+
+  .profile-container {
+    background-color: #121212;
+  }
+
+  .loading {
+    color: #bbbbbb;
+  }
+
+  .profile-header h1 {
+    color: #e0e0e0;
+  }
+
+  .avatar {
+    background-color: #2d2d2d;
+  }
+
+  .avatar svg {
+    color: #bbbbbb;
+  }
+
+  .profile-content {
+    background: #1e1e1e;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .info-section h2, 
+  .products-section h2, 
+  .profile-section h2 {
+    color: #e0e0e0;
+  }
+
+  .info-item {
+    background-color: #2d2d2d;
+  }
+
+  .info-item svg {
+    color: #bbbbbb;
+  }
+
+  .label {
+    color: #bbbbbb;
+  }
+
+  .value {
+    color: #e0e0e0;
+  }
+
+  input, select, textarea {
+    background: #2d2d2d;
+    border-color: #444444;
+    color: #e0e0e0;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: #4a90e2;
+    background: #333333;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+  }
+
+  .edit-button {
+    background-color: #555555;
+    color: #e0e0e0;
+  }
+
+  .edit-button:hover {
+    background-color: #666666;
+  }
+
+  .product-compact-item {
+    background: #2d2d2d;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .product-compact-item:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  .product-compact-details h3 {
+    color: #e0e0e0;
+  }
+
+  .product-compact-actions .edit-button {
+    background-color: #2d2d2d;
+  }
+
+  .product-compact-actions .delete-button {
+    background-color: #2d2d2d;
+  }
+
+  .order-card {
+    background-color: #2d2d2d;
+    border-color: #404040;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .order-card:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    background-color: #333333;
+  }
+
+  .order-number {
+    color: #4a90e2;
+    font-weight: 600;
+  }
+
+  .order-date {
+    color: #b0b0b0;
+  }
+
+  .order-total {
+    color: #4caf50;
+    font-weight: 700;
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+
+  .order-card:hover .order-total {
+    color: #5cdb5c;
+  }
+  
+  .error-message {
+    background-color: #482121;
+    color: #e74c3c;
+  }
+
+  .form-group label {
+    color: #aaaaaa;
+  }
+
+  .form-group small {
+    color: #aaaaaa;
+  }
+
+  .change-password-button {
+    background-color: #619af5;
+  }
+
+  .change-password-button:hover {
+    background-color: #78b6ff;
+  }
+
+  .orders-section {
+    background: #1e1e1e;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Responsive tasarım özellikleri aynı kalacak */
+@media (min-width: 768px) {
+  .info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .products-compact-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 15px;
+  }
+  
+  .button-group {
+    flex-direction: column;
+  }
+  
+  .change-password-button,
+  .edit-button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .orders-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .products-compact-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+  }
+  
+  .product-compact-details {
+    padding: 8px;
+  }
+  
+  .product-compact-details h3 {
+    font-size: 13px;
+  }
+  
+  .product-price-badge {
+    padding: 3px 6px;
+    font-size: 12px;
+  }
+  
+  .product-compact-actions .edit-button,
+  .product-compact-actions .delete-button {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .orders-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .order-card {
+    padding: 0.875rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .products-compact-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

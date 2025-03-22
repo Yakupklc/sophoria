@@ -1,0 +1,419 @@
+/* Açık tema (varsayılan) */
+.cart-overlay,
+.cart-drawer {
+  --cart-bg: white;
+  --cart-header-bg: white;
+  --cart-footer-bg: #f9f9f9;
+  --cart-text: #333;
+  --cart-text-secondary: #666;
+  --cart-price: #2c5282;
+  --cart-border: #eee;
+  --cart-item-bg: white;
+  --cart-image-bg: #f5f5f5;
+  --cart-button-bg: #2c5282;
+  --cart-button-hover: #1a365d;
+  --cart-button-text: white;
+  --cart-button-alt-bg: #f5f5f5;
+  --cart-button-alt-border: #ddd;
+  --cart-button-alt-hover: #e8e8e8;
+  --cart-remove-color: #ff4444;
+  --cart-remove-hover-bg: #ffebeb;
+  --cart-overlay-bg: rgba(0, 0, 0, 0.5);
+  --cart-shadow: -2px 0 10px rgba(0, 0, 0, 0.15);
+  --cart-scrollbar-thumb: #ccc;
+  --cart-scrollbar-track: #f1f1f1;
+}
+
+/* SİSTEM KOYU MOD - otomatik algıla */
+@media (prefers-color-scheme: dark) {
+  .cart-overlay,
+  .cart-drawer {
+    --cart-bg: #121212;
+    --cart-header-bg: #1a1a1a;
+    --cart-footer-bg: #1a1a1a;
+    --cart-text: #e0e0e0;
+    --cart-text-secondary: #9e9e9e;
+    --cart-price: #4d9aff;
+    --cart-border: #2a2a2a;
+    --cart-item-bg: #1e1e1e;
+    --cart-image-bg: #272727;
+    --cart-button-bg: #175290;
+    --cart-button-hover: #1e65ad;
+    --cart-button-text: white;
+    --cart-button-alt-bg: #2a2a2a;
+    --cart-button-alt-border: #444;
+    --cart-button-alt-hover: #444;
+    --cart-remove-color: #ff6b6b;
+    --cart-remove-hover-bg: rgba(255, 107, 107, 0.15);
+    --cart-overlay-bg: rgba(0, 0, 0, 0.7);
+    --cart-shadow: -2px 0 10px rgba(0, 0, 0, 0.5);
+    --cart-scrollbar-thumb: #333;
+    --cart-scrollbar-track: #1a1a1a;
+  }
+}
+
+.cart-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--cart-overlay-bg);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+  visibility: hidden;
+}
+
+.cart-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cart-overlay.closing {
+  opacity: 0;
+  visibility: visible;
+}
+
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: -360px;
+  bottom: 0;
+  width: 360px;
+  max-width: 95vw;
+  background-color: var(--cart-bg);
+  color: var(--cart-text);
+  box-shadow: var(--cart-shadow);
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  transition: right 0.3s ease-in-out, background-color 0.3s ease, color 0.3s ease;
+  border-radius: 0 0 0 20px; /* Footer temasına uygun yuvarlak köşeler */
+}
+
+.cart-drawer.open {
+  right: 0;
+}
+
+.cart-drawer.closing {
+  right: -360px;
+}
+
+.cart-header {
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid var(--cart-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--cart-header-bg);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  border-radius: 20px 0 0 0;
+}
+
+.cart-header h2 {
+  margin: 0;
+  font-size: 1.125rem;
+  color: var(--cart-text);
+  transition: color 0.3s ease;
+  font-weight: 700;
+  order: 2; /* Başlığı ortaya almak için */
+  flex: 1;
+  text-align: center;
+}
+
+.theme-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--cart-text-secondary);
+  font-size: 0.8rem;
+  order: 1; /* Theme indicator'ı sola almak için */
+}
+
+.close-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--cart-text-secondary);
+  padding: 0.4rem;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  order: 3; /* Kapatma butonunu sağa almak için */
+}
+
+
+.close-button:hover {
+  background-color: var(--cart-button-alt-hover);
+  color: var(--cart-text);
+}
+
+
+.cart-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cart-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.75rem;
+  background-color: var(--cart-bg);
+  transition: background-color 0.3s ease;
+}
+
+/* Scrollbar stilini düzenle */
+.cart-items::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cart-items::-webkit-scrollbar-track {
+  background: var(--cart-scrollbar-track);
+}
+
+.cart-items::-webkit-scrollbar-thumb {
+  background: var(--cart-scrollbar-thumb);
+  border-radius: 3px;
+}
+
+.cart-items::-webkit-scrollbar-thumb:hover {
+  background: var(--cart-scrollbar-thumb);
+  opacity: 0.8;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  padding: 0.875rem;
+  border-bottom: 1px solid var(--cart-border);
+  gap: 0.75rem;
+  background-color: var(--cart-item-bg);
+  margin-bottom: 0.5rem;
+  border-radius: 10px; /* Footer temasına uygun yuvarlak köşeler */
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.cart-item:hover {
+  transform: translateY(-2px); /* Footer temasına uygun hover efekti */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+.cart-item-image-container {
+  width: 70px;
+  height: 70px;
+  min-width: 70px;
+  border-radius: 8px; /* Footer temasına uygun yuvarlak köşeler */
+  overflow: hidden;
+  background-color: var(--cart-image-bg);
+  border: 1px solid var(--cart-border);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.cart-item-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+  transition: opacity 0.3s ease;
+}
+
+.cart-item-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.cart-item-details h3 {
+  margin: 0 0 0.4rem 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--cart-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.cart-item-price {
+  font-weight: bold;
+  color: var(--cart-price);
+  margin: 0.25rem 0;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.cart-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+}
+
+.quantity-button {
+  background-color: var(--cart-button-alt-bg);
+  border: 1px solid var(--cart-button-alt-border);
+  border-radius: 8px; /* Footer temasına uygun yuvarlak köşeler */
+  padding: 0.2rem;
+  cursor: pointer;
+  color: var(--cart-text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.quantity-button:hover {
+  background-color: var(--cart-button-alt-hover);
+  border-color: var(--cart-button-alt-border);
+  color: var(--cart-text);
+}
+
+.quantity-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.quantity {
+  min-width: 1.8rem;
+  text-align: center;
+  font-weight: 500;
+  color: var(--cart-text);
+  transition: color 0.3s ease;
+}
+
+.remove-item-button {
+  background: none;
+  border: none;
+  color: var(--cart-remove-color);
+  cursor: pointer;
+  padding: 0.4rem;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove-item-button:hover {
+  background-color: var(--cart-remove-hover-bg);
+  color: var(--cart-text);
+}
+
+.cart-footer {
+  padding: 0.875rem;
+  border-top: 1px solid var(--cart-border);
+  background-color: var(--cart-footer-bg);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  border-radius: 0 0 0 20px; /* Alt köşelere yuvarlaklık */
+}
+
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 0.875rem;
+  font-size: 1.05rem;
+  color: var(--cart-text);
+  transition: color 0.3s ease;
+}
+
+.checkout-button {
+  width: 100%;
+  padding: 0.875rem;
+  background: linear-gradient(135deg, #2c5282 0%, #1a365d 100%); /* Footer temasına uygun gradient */
+  color: var(--cart-button-text);
+  border: none;
+  border-radius: 10px; /* Footer temasına uygun yuvarlak köşeler */
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.checkout-button:hover {
+  background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+  box-shadow: 0 4px 15px rgba(44, 82, 130, 0.3);
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--cart-text-secondary);
+  font-size: 1.05rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: var(--cart-bg);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 10px; /* Footer temasına uygun yuvarlak köşeler */
+}
+
+/* Tablet için responsive tasarım */
+@media (max-width: 768px) {
+  .cart-drawer,
+  .cart-drawer.open,
+  .cart-drawer.closing {
+    width: 340px;
+    right: -340px;
+  }
+  
+  .cart-drawer.open {
+    right: 0;
+  }
+  
+  .cart-drawer.closing {
+    right: -340px;
+  }
+  
+  .cart-item-image-container {
+    width: 65px;
+    height: 65px;
+    min-width: 65px;
+  }
+}
+
+/* Mobil için responsive tasarım */
+@media (max-width: 480px) {
+  .cart-drawer, 
+  .cart-drawer.open,
+  .cart-drawer.closing {
+    width: 100%;
+    right: -100%;
+    max-width: 100%;
+  }
+  
+  .cart-drawer.open {
+    right: 0;
+  }
+  
+  .cart-drawer.closing {
+    right: -100%;
+  }
+  
+  .cart-header {
+    padding: 0.75rem;
+  }
+  
+  .cart-item {
+    padding: 0.75rem;
+  }
+  
+  .cart-item-image-container {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+  }
+  
+  .cart-footer {
+    padding: 0.75rem;
+  }
+}

@@ -1,0 +1,525 @@
+/* Base styles */
+.navbar {
+  background-color: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar-hidden {
+  transform: translateY(-100%);
+}
+
+.navbar-visible {
+  transform: translateY(0);
+}
+
+.navbar-container {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4rem;
+}
+
+/* Logo styles */
+.navbar-logo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo img {
+  height: 60px;
+  width: auto;
+}
+
+/* Search section styles */
+.navbar-search {
+  flex: 1;
+  max-width: 42rem;
+  margin: 0 2rem;
+}
+
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.search-wrapper .search-form {
+  flex: 1; /* Arama formu kalan alanı doldursun */
+}
+
+.search-form {
+  position: relative;
+}
+
+.search-input-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  background-color: #f9fafb;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.search-button {
+  padding: 0.5rem;
+  color: #6b7280;
+  transition: color 0.2s;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  color: #374151;
+}
+
+.search-icon {
+  height: 1.25rem;
+  width: 1.25rem;
+}
+
+/* Icons section styles */
+.navbar-icons {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Varsayılan boşluk */
+}
+
+.icon-button {
+  padding: 0.5rem;
+  color: #6b7280;
+  background: none;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.icon-button:hover {
+  color: #374151;
+  background-color: #f3f4f6;
+}
+
+.icon-button:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 1001;
+  opacity: 0;
+  animation: tooltipFadeIn 0.3s ease forwards;
+}
+
+@keyframes tooltipFadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.icon-button svg {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.icon-button .lucide-log-out {
+  stroke-width: 1.8;
+}
+
+/* UserPlus icon properties */
+.icon-button .lucide-user-plus {
+  stroke-width: 1.8;
+  height: 1.5rem;
+  width: 1.5rem;
+  color: #6b7280;
+}
+
+/* Hover effect for non-logged in user */
+.icon-button:hover .lucide-user-plus {
+  color: #4a90e2;
+  transform: scale(1.1);
+  transition: transform 0.2s, color 0.2s;
+}
+
+/* Cart badge styles */
+.cart-button {
+  position: relative;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -0.25rem;
+  right: -0.25rem;
+  background-color: #ef4444;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border-radius: 9999px;
+  height: 1.25rem;
+  width: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Bottom Navbar styles */
+.bottom-navbar {
+  display: none; /* Varsayılan olarak gizli */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 0.5rem;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* Padding to prevent content from being hidden under navbar */
+.has-navbar {
+  padding-top: 4rem;
+  padding-bottom: 4rem; /* Alt navbar için boşluk */
+}
+
+/* Products container styles */
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: #f5f5f5;
+  transition: background-color 0.3s ease;
+}
+
+.product-box {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-info {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+  transition: color 0.3s ease;
+}
+
+.product-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.5rem;
+  max-height: 2.8em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  position: relative;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.product-name:after {
+  content: "";
+  text-align: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 50%;
+  height: 1.4em;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 80%);
+  transition: background 0.3s ease;
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #121212;
+    color: #e0e0e0;
+  }
+  
+  .navbar {
+    background-color: #1e1e1e;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+  }
+  
+  .bottom-navbar {
+    background-color: #1e1e1e;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  .search-input-container {
+    background-color: #2d2d2d;
+    border-color: #444444;
+  }
+  
+  .search-input {
+    color: #e0e0e0;
+  }
+  
+  .search-input::placeholder {
+    color: #a0a0a0;
+  }
+  
+  .search-button {
+    color: #a0a0a0;
+  }
+  
+  .search-button:hover {
+    color: #ffffff;
+  }
+  
+  .icon-button {
+    color: #a0a0a0;
+  }
+  
+  .icon-button:hover {
+    color: #ffffff;
+    background-color: #333333;
+  }
+  
+  .icon-button:hover::after {
+    background-color: rgba(30, 30, 30, 0.9);
+    color: #e0e0e0;
+  }
+  
+  .icon-button .lucide-user-plus {
+    color: #a0a0a0;
+  }
+  
+  .icon-button:hover .lucide-user-plus {
+    color: #78b6ff;
+  }
+  
+  .products-container {
+    background: #121212;
+  }
+  
+  .product-box {
+    background: #1e1e1e;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  }
+  
+  .product-box:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+  
+  .product-name {
+    color: #e0e0e0;
+  }
+  
+  .product-name:after {
+    background: linear-gradient(to right, rgba(30, 30, 30, 0), rgba(30, 30, 30, 1) 80%);
+  }
+  
+  .product-price {
+    color: #78b6ff;
+  }
+  
+  .product-rating .rating-count {
+    color: #a0a0a0;
+  }
+  
+  .product-date {
+    background: rgba(40, 40, 40, 0.9);
+    color: #d0d0d0;
+  }
+  
+  .add-button {
+    background: #2c5282;
+  }
+  
+  .add-button:hover {
+    background: #3a6aa8;
+  }
+  
+  .add-button.out-of-stock-button {
+    background: #a83244;
+  }
+  
+  .products-container.loading,
+  .products-container.error {
+    color: #a0a0a0;
+  }
+  
+  .products-container.error {
+    color: #ff6b6b;
+  }
+  
+  .no-results {
+    color: #a0a0a0;
+  }
+  
+  .refresh-button {
+    background-color: #333333;
+    border-color: #444444;
+    color: #e0e0e0;
+  }
+  
+  .refresh-button:hover {
+    background-color: #444444;
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .navbar-search {
+    margin: 0 1rem;
+    max-width: none; /* Arama çubuğu tüm genişliği kaplasın */
+  }
+
+  .search-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* Üstteki tüm ikonları gizle (Kategori dahil) */
+  .navbar .search-wrapper .category-button {
+    display: none;
+  }
+
+  .navbar-icons {
+    display: none; /* Sağdaki tüm ikonlar gizlenir */
+  }
+
+  .search-input-container {
+    width: 100%;
+  }
+
+  .search-input {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .search-button {
+    padding: 0.4rem;
+  }
+
+  .search-icon {
+    height: 1rem;
+    width: 1rem;
+  }
+
+  .navbar-content {
+    justify-content: space-between;
+  }
+
+  .bottom-navbar {
+    display: flex; /* Alt navbar görünür olur */
+  }
+
+  .products-container {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .product-image-wrapper {
+    height: 180px;
+  }
+  
+  .product-info {
+    padding: 1rem;
+  }
+  
+  .product-name {
+    font-size: 1.1rem;
+  }
+  
+  .product-price {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .navbar-logo img {
+    height: 50px;
+  }
+
+  .navbar-search {
+    margin: 0 0.5rem;
+  }
+
+  .search-input {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.85rem;
+  }
+
+  .search-button {
+    padding: 0.3rem;
+  }
+
+  .search-icon {
+    height: 0.9rem;
+    width: 0.9rem;
+  }
+
+  .bottom-navbar {
+    padding: 0.3rem;
+  }
+
+  .bottom-navbar .icon-button {
+    padding: 0.4rem;
+  }
+
+  .bottom-navbar .icon-button svg {
+    height: 1.25rem;
+    width: 1.25rem;
+  }
+
+  .bottom-navbar .cart-badge {
+    top: -0.2rem;
+    right: -0.2rem;
+    height: 1rem;
+    width: 1rem;
+    font-size: 0.65rem;
+  }
+}

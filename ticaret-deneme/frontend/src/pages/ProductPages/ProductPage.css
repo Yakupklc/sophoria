@@ -1,0 +1,766 @@
+/* Ürün sayfası için ana stiller */
+.product-page {
+  padding: 2rem 1rem;
+  background-color: #f8f9fa;
+  min-height: calc(100vh - 64px);
+}
+
+.product-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 2rem;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Resim bölümü */
+.product-image-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.product-image-section .product-questions {
+  margin-top: 2rem;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 1.5rem;
+}
+
+.main-image-container {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9f9f9;
+}
+
+.product-main-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Galeri navigasyon butonları */
+.gallery-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1;
+  transition: all 0.3s;
+  opacity: 0;
+}
+
+.gallery-nav:hover {
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-nav.prev {
+  left: 10px;
+}
+
+.gallery-nav.next {
+  right: 10px;
+}
+
+.main-image-container:hover .gallery-nav {
+  opacity: 60%;
+}
+
+/* Küçük resimler galerisi */
+.product-thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-start;
+}
+
+.thumbnail {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 2px solid transparent;
+}
+
+.thumbnail:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.thumbnail.active {
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.3);
+}
+
+/* Ürün bilgileri bölümü */
+.product-info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.product-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.product-title {
+  font-size: 1.8rem;
+  margin: 0;
+  color: #333;
+  flex: 1;
+}
+
+.seller-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #666;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background-color: #f5f5f5;
+  transition: all 0.2s;
+}
+
+.seller-info:hover {
+  background-color: #eaeaea;
+}
+
+.seller-icon {
+  color: #777;
+}
+
+.seller-name {
+  font-weight: 500;
+}
+
+.product-price {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #e63946;
+  margin: 0.5rem 0;
+}
+
+.product-stats {
+  display: flex;
+  gap: 1.5rem;
+  color: #666;
+  margin: 0.5rem 0;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Ürün detayları ve açıklaması */
+.product-details, .product-features {
+  margin-top: 1rem;
+}
+
+.product-details h2, .product-features h2, 
+.product-questions h2, .product-reviews h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.product-description {
+  line-height: 1.6;
+  color: #444;
+}
+
+/* Ürün özellikleri listesi */
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.8rem;
+}
+
+.feature-item {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  background-color: #f8f9fa;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.feature-title {
+  font-weight: 600;
+  color: #555;
+  min-width: 80px;
+}
+
+.feature-value {
+  color: #444;
+}
+
+/* Kargo bilgileri - YENİ */
+.shipping-info {
+  display: flex;
+  gap: 15px;
+  margin: 20px 0;
+  padding: 5px;
+  justify-content: flex-start;
+}
+
+.shipping-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  padding: 12px 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  width: fit-content;
+  min-width: 180px;
+}
+
+.shipping-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.shipping-icon-wrapper {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.free-shipping .shipping-icon-wrapper {
+  background-color: #ebf7ee;
+  color: #34a853;
+}
+
+.shipping-time .shipping-icon-wrapper {
+  background-color: #f3f4f6;
+  color: #4b5563;
+}
+
+.shipping-content {
+  display: flex;
+  flex-direction: column;
+  white-space: nowrap;
+}
+
+.shipping-title {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-bottom: 2px;
+}
+
+.shipping-value {
+  font-size: 0.9rem;
+  color: #111827;
+  font-weight: 500;
+}
+
+/* Ürün işlemleri */
+.product-actions {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.add-to-cart-button, .ask-question-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+.add-to-cart-button {
+  background-color: #4a90e2;
+  color: white;
+  flex: 2;
+}
+
+.add-to-cart-button:hover:not(:disabled) {
+  background-color: #3a7bc8;
+}
+
+.add-to-cart-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.ask-question-button {
+  background-color: #f0f0f0;
+  color: #555;
+  flex: 1;
+}
+
+.ask-question-button:hover:not(:disabled) {
+  background-color: #e6e6e6;
+}
+
+/* Yorumlar ve sorular */
+.reviews-and-questions {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.questions-list, .reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.question-item, .review-item {
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.question-header, .review-header, .answer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.asker-name, .review-author, .seller-name {
+  font-weight: 600;
+  color: #444;
+}
+
+.question-date, .review-date, .answer-date {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+.question-text, .answer-text, .review-comment {
+  margin: 0.5rem 0;
+  line-height: 1.5;
+}
+
+.answer-section {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f0f7ff;
+  border-radius: 8px;
+}
+
+.review-rating {
+  display: flex;
+  gap: 2px;
+}
+
+/* Giriş gerektiren işlemler */
+.login-to-review {
+  background-color: #f8fafc;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 1px solid #e2e8f0;
+}
+
+.login-message {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  color: #64748b;
+}
+
+.login-message svg {
+  color: #3b82f6;
+}
+
+.login-message p {
+  font-size: 16px;
+  margin: 0;
+}
+
+.login-button {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.login-button:hover {
+  background-color: #2563eb;
+}
+
+.already-reviewed {
+  background-color: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+  color: #0c4a6e;
+}
+
+.already-reviewed p {
+  margin: 0;
+  font-size: 15px;
+}
+
+/* Mobil görünümde sorular */
+.mobile-questions {
+  display: none;
+}
+
+/* Responsive düzenlemeler */
+@media (max-width: 992px) {
+  .product-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .main-image-container {
+    height: 350px;
+  }
+  
+  .product-image-section .product-questions {
+    display: none;
+  }
+  
+  .mobile-questions {
+    display: block;
+    margin-top: 2rem;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .product-page {
+    padding: 1rem 0.5rem;
+  }
+  
+  .product-container {
+    padding: 1.5rem;
+  }
+  
+  .main-image-container {
+    height: 300px;
+  }
+  
+  .product-actions {
+    flex-direction: column;
+  }
+  
+  .product-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .thumbnail {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .login-to-review {
+    padding: 16px;
+  }
+  
+  .login-message {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 640px) {
+  .shipping-info {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .shipping-card {
+    width: auto;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-image-container {
+    height: 250px;
+  }
+  
+  .gallery-nav {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .product-stats {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .thumbnail {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* Dark mode için */
+@media (prefers-color-scheme: dark) {
+  .product-page {
+    background-color: #121212;
+  }
+
+  .product-container {
+    background-color: #1e1e1e;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .main-image-container {
+    background-color: #2d2d2d;
+  }
+
+  .gallery-nav {
+    background-color: rgba(45, 45, 45, 0.8);
+    color: #e0e0e0;
+  }
+
+  .gallery-nav:hover {
+    background-color: rgba(60, 60, 60, 0.95);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .thumbnail {
+    border-color: transparent;
+    background-color: #2d2d2d;
+  }
+
+  .thumbnail.active {
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.3);
+  }
+
+  .product-title {
+    color: #e0e0e0;
+  }
+
+  .seller-info {
+    color: #b0b0b0;
+    background-color: #2d2d2d;
+  }
+
+  .seller-info:hover {
+    background-color: #333333;
+  }
+
+  .seller-icon {
+    color: #b0b0b0;
+  }
+
+  .product-price {
+    color: #f87171;
+  }
+
+  .product-stats {
+    color: #b0b0b0;
+  }
+
+  .product-details h2, .product-features h2, 
+  .product-questions h2, .product-reviews h2 {
+    color: #e0e0e0;
+  }
+
+  .product-description {
+    color: #b0b0b0;
+  }
+
+  .feature-item {
+    background-color: #2d2d2d;
+  }
+
+  .feature-title {
+    color: #cccccc;
+  }
+
+  .feature-value {
+    color: #b0b0b0;
+  }
+
+  /* Shipping dark mode - YENİ */
+  .shipping-card {
+    background: #1e1e1e;
+    border-color: #333;
+  }
+
+  .shipping-icon-wrapper {
+    background-color: #2d2d2d;
+  }
+
+  .free-shipping .shipping-icon-wrapper {
+    background-color: #064e3b;
+    color: #6ee7b7;
+  }
+
+  .shipping-time .shipping-icon-wrapper {
+    background-color: #2d2d2d;
+    color: #b0b0b0;
+  }
+
+  .shipping-title {
+    color: #b0b0b0;
+  }
+
+  .shipping-value {
+    color: #e0e0e0;
+  }
+
+  .add-to-cart-button {
+    background-color: #4a90e2;
+  }
+
+  .add-to-cart-button:hover:not(:disabled) {
+    background-color: #3a7bc8;
+  }
+
+  .add-to-cart-button:disabled {
+    background-color: #444444;
+    color: #888888;
+  }
+
+  .ask-question-button {
+    background-color: #2d2d2d;
+    color: #e0e0e0;
+  }
+
+  .ask-question-button:hover:not(:disabled) {
+    background-color: #333333;
+  }
+
+  .question-item, .review-item {
+    background-color: #2d2d2d;
+  }
+
+  .asker-name, .review-author, .seller-name {
+    color: #e0e0e0;
+  }
+
+  .question-date, .review-date, .answer-date {
+    color: #888888;
+  }
+
+  .question-text, .answer-text, .review-comment {
+    color: #b0b0b0;
+  }
+
+  .answer-section {
+    background-color: #1a365d;
+  }
+
+  .login-to-review {
+    background-color: #2d2d2d;
+    border-color: #444444;
+  }
+
+  .login-message {
+    color: #b0b0b0;
+  }
+
+  .login-message svg {
+    color: #4a90e2;
+  }
+
+  .login-button {
+    background-color: #4a90e2;
+  }
+
+  .login-button:hover {
+    background-color: #3a7bc8;
+  }
+
+  .already-reviewed {
+    background-color: #172554;
+    border-color: #1e40af;
+    color: #93c5fd;
+  }
+
+  .cannot-review {
+    background-color: #2d2d2d;
+    border-color: #444444;
+    color: #b0b0b0;
+  }
+}
+
+/* Button ve review kontrolleri için ek stiller */
+.add-to-cart-button:disabled,
+.ask-question-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed !important;
+  pointer-events: all !important;
+}
+
+.add-to-cart-button:disabled:hover,
+.ask-question-button:disabled:hover {
+  background-color: #f5f5f5;
+  border-color: #ddd;
+}
+
+.cannot-review {
+  background-color: #f8f8f8;
+  border: 1px solid #eee;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #666;
+}
+
+.cannot-review p {
+  margin: 0;
+  font-size: 0.9rem;
+}

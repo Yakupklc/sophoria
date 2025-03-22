@@ -1,0 +1,168 @@
+/* ProfileQuestions.css */
+.profile-questions {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  
+  .profile-questions h2 {
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  .questions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .question-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border: 1px solid #eee;
+  }
+  
+  .question-product {
+    display: flex;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 1rem;
+  }
+  
+  .product-thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .product-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .product-name {
+    font-weight: 600;
+    color: #2c3e50;
+  }
+  
+  .asker-info {
+    margin-bottom: 0.5rem;
+    color: #666;
+  }
+  
+  .asker-name {
+    font-weight: 500;
+    color: #4a90e2;
+  }
+  
+  .question-text {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+  
+  .answer-form textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    resize: vertical;
+    transition: border-color 0.2s;
+  }
+  
+  .answer-form textarea:focus {
+    outline: none;
+    border-color: #4a90e2;
+  }
+  
+  .answer-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+  }
+  
+  .submit-answer,
+  .answer-button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .submit-answer,
+  .answer-button {
+    background: #4a90e2;
+    color: white;
+  }
+  
+  .submit-answer:hover,
+  .answer-button:hover {
+    background: #357abd;
+    transform: translateY(-1px);
+  }
+  
+  .submit-answer:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  .cancel-answer {
+    padding: 0.75rem 1.5rem;
+    border: 2px solid #dc3545;
+    background: white;
+    color: #dc3545;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .cancel-answer:hover {
+    background: #dc3545;
+    color: white;
+  }
+  
+  .no-questions {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #666;
+  }
+  
+  .no-questions h2 {
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  /* Responsive tasarım */
+  @media (max-width: 640px) {
+    .question-product {
+      flex-direction: column;
+    }
+    
+    .product-thumbnail {
+      width: 100%;
+      height: 200px;
+    }
+    
+    .answer-actions {
+      flex-direction: column;
+    }
+    
+    .submit-answer,
+    .cancel-answer,
+    .answer-button {
+      width: 100%;
+    }
+  }

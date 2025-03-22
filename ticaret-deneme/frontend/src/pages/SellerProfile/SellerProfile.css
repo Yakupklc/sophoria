@@ -1,0 +1,475 @@
+.seller-profile-container {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 15px;
+}
+
+/* Sağ Panel - Satıcı Bilgileri */
+.seller-info-panel {
+  width: 320px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.seller-info-header {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.seller-info-header h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #343a40;
+  font-weight: 600;
+}
+
+.seller-info-content {
+  padding: 15px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.seller-username h3 {
+  margin: 0 0 10px 0;
+  font-size: 22px;
+  color: #212529;
+}
+
+.seller-join-date {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 15px;
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.seller-rating {
+  margin-top: 15px;
+}
+
+.rating-stars {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.rating-stars span {
+  font-weight: 600;
+  color: #212529;
+}
+
+.rating-count {
+  font-weight: normal;
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.no-rating {
+  color: #6c757d;
+  font-style: italic;
+  font-size: 14px;
+}
+
+.statistics-section {
+  padding: 15px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.statistics-section h3 {
+  font-size: 16px;
+  color: #343a40;
+  margin: 0 0 15px 0;
+  font-weight: 600;
+}
+
+.stat-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 10px;
+}
+
+.stat-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  background-color: #f8f9fa;
+  border-radius: 50%;
+  color: #4361ee;
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.stat-value {
+  font-size: 15px;
+  color: #212529;
+  font-weight: 600;
+}
+
+.seller-contact {
+  padding: 15px;
+}
+
+.seller-contact h3 {
+  font-size: 16px;
+  color: #343a40;
+  margin: 0 0 15px 0;
+  font-weight: 600;
+}
+
+.message-seller-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #4361ee;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.message-seller-btn:hover:not(:disabled) {
+  background-color: #3a56d4;
+}
+
+.message-seller-btn:disabled,
+.message-seller-btn.blocked-button {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Sol Panel - Ürünler */
+.products-panel {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.products-header {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.products-header h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #343a40;
+  font-weight: 600;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.product-card {
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.product-image-container {
+  height: 180px;
+  overflow: hidden;
+  position: relative;
+}
+
+.product-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image-container img {
+  transform: scale(1.05);
+}
+
+.discount-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: #dc3545;
+  color: white;
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.product-details {
+  padding: 12px;
+}
+
+.product-name {
+  margin: 0 0 8px 0;
+  font-size: 15px;
+  font-weight: 500;
+  color: #212529;
+  overflow: hidden;
+  max-height: 2.8em;
+  line-height: 1.4;
+  position: relative;
+  text-overflow: ellipsis;
+}
+
+.product-name:after {
+  content: "";
+  text-align: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 50%;
+  height: 1.4em;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 70%);
+}
+
+.product-price {
+  color: #2b8a3e;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  font-size: 16px;
+}
+
+.product-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.product-stock {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.in-stock {
+  background-color: rgba(40, 167, 69, 0.1);
+  color: #28a745;
+}
+
+.out-of-stock {
+  background-color: rgba(220, 53, 69, 0.1);
+  color: #dc3545;
+}
+
+.product-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 500;
+}
+
+.add-to-cart-btn {
+  width: 100%;
+  padding: 8px 12px;
+  background-color: #2c5282;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.add-to-cart-btn:hover:not(:disabled) {
+  background-color: #1a365d;
+}
+
+.add-to-cart-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.no-products-message {
+  padding: 40px 20px;
+  text-align: center;
+  color: #6c757d;
+  font-size: 16px;
+}
+
+/* Yükleme ve Hata Durumları */
+.loading-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+}
+
+.loader {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #e9ecef;
+  border-top: 3px solid #4361ee;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-message {
+  text-align: center;
+  padding: 40px 20px;
+  max-width: 500px;
+  margin: 40px auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.error-message h2 {
+  color: #dc3545;
+  margin: 0 0 10px 0;
+}
+
+.error-message p {
+  color: #6c757d;
+  margin-bottom: 20px;
+}
+
+.error-message button {
+  padding: 10px 20px;
+  background-color: #4361ee;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #121212;
+  }
+
+  .seller-info-panel, .products-panel, .product-card {
+    background-color: #1e1e1e;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+
+  .seller-info-header, .products-header {
+    background-color: #2c2c2c;
+    border-bottom-color: #333;
+  }
+
+  .seller-info-header h2, .products-header h2,
+  .seller-contact h3, .statistics-section h3 {
+    color: #e0e0e0;
+  }
+
+  .seller-username h3 {
+    color: #f1f5f9;
+  }
+
+  .seller-join-date, .no-rating {
+    color: #adb5bd;
+  }
+
+  .seller-info-content, .statistics-section {
+    border-bottom-color: #333;
+  }
+
+  .product-name:after {
+    background: linear-gradient(to right, rgba(30, 30, 30, 0), rgba(30, 30, 30, 1) 70%);
+  }
+
+  .product-name {
+    color: #f1f5f9;
+  }
+
+  .message-seller-btn:disabled,
+  .message-seller-btn.blocked-button {
+    background-color: #444444;
+    color: #888888;
+  }
+
+  .add-to-cart-btn:disabled {
+    background-color: #444444;
+    color: #888888;
+  }
+
+  .no-products-message {
+    color: #adb5bd;
+  }
+
+  .loader {
+    border-color: #2c2c2c;
+    border-top-color: #4361ee;
+  }
+
+  .error-message {
+    background-color: #1e1e1e;
+  }
+
+  .error-message p {
+    color: #adb5bd;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .seller-profile-container {
+    flex-direction: column;
+  }
+
+  .seller-info-panel {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+}

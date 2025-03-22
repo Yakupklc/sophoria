@@ -1,0 +1,283 @@
+/* Modal Overlay - Her zaman koyu arka plan overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+/* Modal Content - Her zaman beyaz arka plan */
+.modal-content {
+  background: #ffffff !important; /* Koyu modda bile beyaz kalır */
+  padding: 30px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 450px; /* Daha geniş ve modern bir genişlik */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Daha belirgin gölge */
+  animation: modalFadeIn 0.3s ease-out;
+  margin: auto; /* Yatayda merkezleme */
+  color: #212529 !important; /* Her zaman koyu gri metin */
+  transition: none; /* Koyu mod geçiş animasyonunu devre dışı bırak */
+  font-family: 'Inter', system-ui, -apple-system, sans-serif; /* Sophoria temasına uygun yazı tipi */
+}
+
+/* Animasyon */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Modal Header - Metinler ortalanacak */
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #dee2e6; /* Açık gri sınır */
+  justify-content: center; /* Metinleri yatayda ortala */
+}
+
+.modal-header h2 {
+  margin: 0;
+  color: #dc3545 !important; /* Kırmızı uyarı rengi, sabit */
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* Uyarı İkonu - Header içinde ortada kalır */
+.warning-icon {
+  color: #dc3545 !important; /* Kırmızı uyarı rengi, sabit */
+}
+
+/* Uyarı Metni - Ortalanacak */
+.warning-text {
+  color: #6c757d !important; /* Gri uyarı metni, sabit */
+  margin-bottom: 24px;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: center; /* Metni yatayda ortala */
+}
+
+/* Form Grubu */
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  color: #212529 !important; /* Her zaman koyu gri, sabit */
+  font-weight: 500;
+  text-align: center; /* Metni yatayda ortala */
+}
+
+/* Input Alanları - Koyu moddan etkilenmeyen stil */
+.modal-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dee2e6 !important; /* Açık gri çerçeve, sabit */
+  border-radius: 8px; /* Checkout ile uyumlu yuvarlak köşeler */
+  background-color: #ffffff !important; /* Her zaman beyaz arka plan */
+  color: #212529 !important; /* Her zaman koyu gri metin */
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.modal-input:focus {
+  outline: none;
+  border-color: #dc3545 !important; /* Kırmızı odak rengi, sabit */
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.15) !important; /* Kırmızı gölge */
+}
+
+.modal-input.error {
+  border-color: #dc3545 !important; /* Hata durumunda kırmızı çerçeve */
+}
+
+/* Hata Mesajları - Genel Stil */
+.error-message {
+  color: #dc3545 !important; /* Kırmızı hata metni, sabit */
+  font-size: 0.9rem;
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  justify-content: center; /* Metni yatayda ortala */
+}
+
+/* Şifre Hatalı Mesajı - Modern ve Şık Stil */
+.error-message.server-error {
+  display: block; /* Blok seviyesinde, metni daha belirgin yap */
+  text-align: center; /* Metni yatayda ortala */
+  padding: 8px 12px; /* Daha modern bir padding */
+  background-color: #ffebee !important; /* Hafif kırmızı arka plan, sabit */
+  border: 1px solid #dc3545 !important; /* Kırmızı çerçeve, sabit */
+  border-radius: 6px; /* Yuvarlak köşeler */
+  margin-top: 8px; /* Input alanından biraz daha uzak */
+  font-weight: 500; /* Daha kalın yazı */
+  animation: errorFadeIn 0.3s ease-out; /* Animasyon efekti */
+}
+
+/* Hata Mesajı Animasyonu */
+@keyframes errorFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Butonlar */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.modal-actions button {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.cancel-button {
+  background-color: #f8f9fa !important; /* Açık gri arka plan, sabit */
+  color: #212529 !important; /* Koyu gri metin, sabit */
+  border: 1px solid #dee2e6 !important; /* Açık gri çerçeve */
+}
+
+.cancel-button:hover {
+  background-color: #e9ecef !important; /* Daha açık gri, sabit */
+  border-color: #ced4da !important; /* Daha açık gri çerçeve */
+}
+
+.delete-button {
+  background-color: #dc3545 !important; /* Kırmızı, sabit */
+  color: #ffffff !important; /* Beyaz metin, sabit */
+}
+
+.delete-button:hover {
+  background-color: #c82333 !important; /* Daha koyu kırmızı, sabit */
+}
+
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Responsive Tasarım - Merkezleme ve tasarım korunuyor */
+@media (max-width: 768px) {
+  .modal-overlay {
+    padding: 16px;
+  }
+
+  .modal-content {
+    padding: 20px;
+    max-width: 350px; /* Mobil cihazlar için biraz daha küçük */
+  }
+
+  .modal-header h2 {
+    font-size: 1.25rem;
+  }
+
+  .warning-text {
+    font-size: 0.9rem;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .modal-actions button {
+    width: 100%;
+    padding: 12px;
+  }
+}
+
+/* Koyu Moddan Etkilenmeme - Her zaman açık tema */
+@media (prefers-color-scheme: dark) {
+  .modal-content {
+    background: #ffffff !important; /* Koyu modda bile beyaz */
+    color: #212529 !important; /* Koyu modda bile koyu gri */
+  }
+
+  .modal-header {
+    border-bottom: 1px solid #dee2e6 !important; /* Açık gri, sabit */
+  }
+
+  .warning-text {
+    color: #6c757d !important; /* Gri, sabit */
+  }
+
+  .form-group label {
+    color: #212529 !important; /* Koyu gri, sabit */
+  }
+
+  .modal-input {
+    background-color: #ffffff !important; /* Koyu modda beyaz */
+    color: #212529 !important; /* Koyu modda koyu gri */
+    border-color: #dee2e6 !important; /* Açık gri çerçeve */
+  }
+
+  .modal-input:focus {
+    border-color: #dc3545 !important; /* Kırmızı, sabit */
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.15) !important; /* Kırmızı gölge */
+  }
+
+  .modal-input.error {
+    border-color: #dc3545 !important; /* Kırmızı, sabit */
+  }
+
+  .error-message {
+    color: #dc3545 !important; /* Kırmızı, sabit */
+  }
+
+  .error-message.server-error {
+    background-color: #ffebee !important; /* Hafif kırmızı arka plan, sabit */
+    border-color: #dc3545 !important; /* Kırmızı çerçeve, sabit */
+    color: #dc3545 !important; /* Kırmızı metin, sabit */
+  }
+
+  .cancel-button {
+    background-color: #f8f9fa !important; /* Açık gri, sabit */
+    color: #212529 !important; /* Koyu gri, sabit */
+    border-color: #dee2e6 !important; /* Açık gri, sabit */
+  }
+
+  .cancel-button:hover {
+    background-color: #e9ecef !important; /* Daha açık gri, sabit */
+    border-color: #ced4da !important; /* Daha açık gri, sabit */
+  }
+
+  .delete-button {
+    background-color: #dc3545 !important; /* Kırmızı, sabit */
+    color: #ffffff !important; /* Beyaz, sabit */
+  }
+
+  .delete-button:hover {
+    background-color: #c82333 !important; /* Daha koyu kırmızı, sabit */
+  }
+}

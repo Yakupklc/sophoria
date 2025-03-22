@@ -1,0 +1,239 @@
+/* Mevcut stillerin üstüne eklenen hata stilini güncelliyoruz */
+.auth-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a1a 0%, #373737 100%);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-wrapper::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.05) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.05) 75%,
+    transparent 75%
+  );
+  transform: rotate(-45deg);
+  animation: backgroundMove 30s linear infinite;
+  background-size: 100px 100px;
+}
+
+@keyframes backgroundMove {
+  0% {
+    transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+  }
+  100% {
+    transform: translateX(0%) translateY(0%) rotate(-45deg);
+  }
+}
+
+.auth-container {
+  position: relative;
+  z-index: 1;
+  padding: 2rem 1rem;
+}
+
+.auth-paper {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px);
+  border-radius: 20px !important;
+  padding: 2.5rem !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+  max-width: 450px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.auth-title {
+  color: #1a1a1a;
+  font-weight: 700 !important;
+  letter-spacing: 2px !important;
+  margin-bottom: 0.5rem !important;
+  position: relative;
+  display: inline-block;
+}
+
+.auth-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #1a1a1a 0%, #373737 100%);
+  border-radius: 2px;
+}
+
+.auth-subtitle {
+  color: #666;
+  margin-top: 1rem !important;
+  font-size: 1rem !important;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Input stillerini güncelliyoruz (koyu mod duyarlılığını kaldır) */
+.auth-input {
+  background: #fff; /* Sabit beyaz arka plan */
+  border-radius: 10px;
+}
+
+.auth-input .MuiOutlinedInput-root {
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  background-color: #fff; /* Sabit beyaz arka plan */
+  color: #000; /* Yazı rengini siyah yap */
+}
+
+.auth-input .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #1a1a1a;
+}
+
+.auth-input .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #1a1a1a;
+  border-width: 2px;
+}
+
+.auth-input .MuiInputLabel-root.Mui-focused {
+  color: #1a1a1a;
+}
+
+.auth-input .MuiInputAdornment-root svg {
+  color: #666;
+  font-size: 1.2rem;
+}
+
+/* Placeholder stilleri */
+.auth-input .MuiOutlinedInput-root::placeholder {
+  color: #6c757d; /* Gri placeholder */
+}
+
+/* Buton stilleri */
+.auth-button {
+  background: linear-gradient(90deg, #1a1a1a 0%, #373737 100%) !important;
+  color: white !important;
+  padding: 0.8rem !important;
+  border-radius: 10px !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  transition: all 0.3s ease !important;
+  margin-top: 1rem !important;
+}
+
+.auth-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.auth-button:disabled {
+  background: rgba(26, 26, 26, 0.6) !important;
+  transform: none;
+}
+
+.auth-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.remember-me {
+  margin: 0 !important;
+  font-family: "Roboto", sans-serif !important;
+  color: #666 !important;
+}
+
+.forgot-password {
+  color: #1a1a1a !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  font-family: "Roboto", sans-serif !important;
+  font-size: 0.9rem !important;
+  padding: 0 !important;
+  transition: color 0.3s ease !important;
+}
+
+.forgot-password:hover {
+  color: #373737 !important;
+}
+
+.auth-links {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.auth-link-text {
+  color: #666;
+  font-size: 0.9rem !important;
+}
+
+.auth-link {
+  color: #1a1a1a !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  padding: 0.3rem 0.8rem !important;
+  border-radius: 5px !important;
+  transition: all 0.3s ease !important;
+}
+
+.auth-link:hover {
+  background: rgba(26, 26, 26, 0.1) !important;
+}
+
+/* Hata mesajını ForgotPassword gibi kırmızı ve belirgin hale getiriyoruz */
+.auth-error {
+  border-radius: 10px !important;
+  margin-bottom: 1rem !important;
+  background-color: #ffebee !important; /* Hafif kırmızı arka plan */
+  color: #d32f2f !important; /* Koyu kırmızı metin */
+  font-size: 0.9rem !important;
+  font-family: "Roboto", sans-serif !important;
+  padding: 0.5rem 1rem !important;
+  border: 1px solid #ffcdd2 !important; /* Hafif kırmızı çerçeve */
+  opacity: 1 !important; /* Tamamen görünür */
+  transition: opacity 0.5s ease-in-out !important; /* Daha uzun bir geçiş */
+  z-index: 1000 !important; /* Üstte kalmasını sağla */
+}
+
+@media (max-width: 600px) {
+  .auth-paper {
+    padding: 2rem 1.5rem !important;
+  }
+  
+  .auth-title {
+    font-size: 1.8rem !important;
+  }
+  
+  .auth-form {
+    gap: 1rem;
+  }
+}
+
+.auth-page {
+  height: 100vh;
+}
+
+.auth-page body {
+  padding-top: 0 !important;
+}

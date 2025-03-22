@@ -1,0 +1,182 @@
+/* Şikayet ve Öneri Sayfası Genel Stilleri */
+.complaint-wrapper {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a1a 0%, #373737 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Yatayda ortalamak için eklendi */
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .complaint-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.05) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.05) 50%,
+      rgba(255, 255, 255, 0.05) 75%,
+      transparent 75%
+    );
+    animation: backgroundMove 30s linear infinite;
+    background-size: 100px 100px;
+  }
+  
+  @keyframes backgroundMove {
+    0% {
+      transform: translateX(-50%) translateY(-50%) rotate(45deg);
+    }
+    100% {
+      transform: translateX(0%) translateY(0%) rotate(45deg);
+    }
+  }
+  
+  .complaint-container {
+    position: relative;
+    z-index: 1;
+    padding: 2rem 1rem;
+  }
+  
+  .complaint-paper {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Başlık ve Alt Başlık */
+  .complaint-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+  
+  .complaint-title {
+    color: #1a1a1a;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .complaint-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, #1a1a1a 0%, #373737 100%);
+    border-radius: 2px;
+  }
+  
+  .complaint-subtitle {
+    color: #666;
+    font-size: 1rem;
+  }
+  
+  /* Form Stilleri */
+  .complaint-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .form-field {
+    margin-bottom: 1rem;
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #1a1a1a;
+  }
+  
+  .complaint-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #000;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  
+  .complaint-input:focus {
+    border-color: #1a1a1a;
+    outline: none;
+  }
+  
+  .complaint-textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+  
+  /* Buton Stilleri */
+  .complaint-button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(90deg, #1a1a1a 0%, #373737 100%);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .complaint-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .complaint-button:disabled {
+    background: rgba(26, 26, 26, 0.6);
+    cursor: not-allowed;
+  }
+  
+  /* Mesajlar */
+  .success-message {
+    color: #2e7d32;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1rem;
+  }
+  
+  .error-message {
+    color: #d32f2f;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1rem;
+  }
+  
+  /* Responsive Tasarım */
+  @media (max-width: 600px) {
+    .complaint-paper {
+      padding: 2rem 1.5rem;
+    }
+  
+    .complaint-title {
+      font-size: 1.8rem;
+    }
+  
+    .complaint-form {
+      gap: 1rem;
+    }
+  }

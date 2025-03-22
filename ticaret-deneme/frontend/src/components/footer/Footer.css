@@ -1,0 +1,185 @@
+:root {
+  /* Footer Variables - Light Mode */
+  --footer-bg: linear-gradient(135deg, #1a1a1a 0%, #373737 100%);
+  --footer-text: #e0e0e0;
+  --footer-section-bg: rgba(255, 255, 255, 0.05);
+  --footer-border: rgba(255, 255, 255, 0.1);
+  --footer-hover: #0a84ff;
+  --footer-muted: #a0a0a0;
+}
+
+/* Dark Mode Footer Variables */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --footer-bg: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+    --footer-text: #ffffff;
+    --footer-section-bg: rgba(255, 255, 255, 0.07);
+    --footer-border: rgba(255, 255, 255, 0.15);
+    --footer-hover: #60a5fa;
+    --footer-muted: #b3b3b3;
+  }
+}
+
+.footer {
+  background: var(--footer-bg);
+  color: var(--footer-text);
+  padding: 60px 0 30px; /* Toplu padding ile uyumlu */
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin-top: auto; /* Footer’ın sayfanın altına sabitlenmesi için */
+}
+
+/* Footer arka plan animasyonu */
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.05) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.05) 75%,
+    transparent 75%
+  );
+  animation: backgroundMove 30s linear infinite;
+  background-size: 100px 100px;
+}
+
+@keyframes backgroundMove {
+  0% {
+    transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(0%) translateY(0%) rotate(45deg);
+  }
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto; /* Toplu margin ile uyumlu */
+  padding: 0 20px; /* Toplu padding ile uyumlu */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-section {
+  padding: 20px;
+  background: var(--footer-section-bg);
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.footer-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.footer-section h3 {
+  color: var(--footer-text);
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  position: relative;
+}
+
+.footer-section h3::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 30px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--footer-hover) 0%, var(--footer-section-bg) 100%);
+  border-radius: 2px;
+}
+
+.footer-section p,
+.footer-section ul {
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section ul li {
+  margin-bottom: 15px;
+}
+
+.footer-section a {
+  color: var(--footer-text);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+  color: var(--footer-hover);
+  text-decoration: underline;
+}
+
+.created-by {
+  font-size: 0.9rem;
+  color: var(--footer-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--footer-border);
+  color: var(--footer-muted);
+}
+
+.footer-bottom p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 15px;
+  }
+
+  .footer-section {
+    text-align: center;
+  }
+
+  .footer-section h3::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 40px 0 20px;
+  }
+
+  .footer-section {
+    padding: 15px;
+  }
+
+  .footer-section h3 {
+    font-size: 1.3rem;
+  }
+}

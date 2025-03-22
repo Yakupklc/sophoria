@@ -1,0 +1,144 @@
+/* DeleteConfirmModal.css */
+.delete-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .delete-confirm-modal {
+    background: #ffffff;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 90%;
+    padding: 25px;
+    text-align: center;
+    animation: modalFadeIn 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .delete-modal-icon {
+    margin-bottom: 15px;
+    color: #dc3545;
+  }
+  
+  .delete-confirm-modal h3 {
+    color: #dc3545;
+    margin-bottom: 15px;
+    font-size: 20px;
+  }
+  
+  .delete-confirm-modal p {
+    margin-bottom: 25px;
+    color: #333;
+    line-height: 1.5;
+  }
+  
+  .delete-confirm-modal strong {
+    font-weight: 600;
+  }
+  
+  .button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .delete-confirm-button {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .delete-confirm-button:hover {
+    background-color: #bb2d3b;
+  }
+  
+  .cancel-button {
+    background-color: #f0f0f0;
+    color: #666;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .cancel-button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  @keyframes modalFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Koyu mod stilleri */
+  .dark-mode .delete-confirm-modal {
+    background: #1e1e1e;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  .dark-mode .delete-modal-icon {
+    color: #f55a5f;
+  }
+  
+  .dark-mode .delete-confirm-modal h3 {
+    color: #f55a5f;
+  }
+  
+  .dark-mode .delete-confirm-modal p {
+    color: #e0e0e0;
+  }
+  
+  .dark-mode .delete-confirm-button {
+    background-color: #dc3545;
+  }
+  
+  .dark-mode .delete-confirm-button:hover {
+    background-color: #bd2130;
+  }
+  
+  .dark-mode .cancel-button {
+    background-color: #444444;
+    color: #cccccc;
+  }
+  
+  .dark-mode .cancel-button:hover {
+    background-color: #555555;
+  }
+  
+  /* Mobil düzenlemeler */
+  @media (max-width: 480px) {
+    .delete-confirm-modal {
+      width: 95%;
+      padding: 20px;
+    }
+    
+    .button-group {
+      flex-direction: column;
+    }
+    
+    .delete-confirm-button,
+    .cancel-button {
+      width: 100%;
+    }
+  }
