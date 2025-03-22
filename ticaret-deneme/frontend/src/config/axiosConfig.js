@@ -1,15 +1,18 @@
 import axios from "axios";
 
-// API URL'sini ortama göre belirleme - Geliştirme ortamında tam URL, üretimde relative URL
+// API URL'sini ortama göre belirleme
 const baseURL = import.meta.env.DEV 
-  ? import.meta.env.VITE_API_URL || "http://localhost:5001/api" 
-  : "/api"; // Production'da Netlify proxy'sini kullanmak için relative path
+  ? import.meta.env.VITE_API_URL || "http://localhost:5001/api"
+  : "https://sophoria-api.vercel.app/api"; // Doğrudan API URL'sini kullan
+
+console.log("Current API baseURL:", baseURL);
 
 const axiosInstance = axios.create({
   baseURL,
   headers: {
     "Content-Type": "application/json",
   },
+  withCredentials: false
 });
 
 // Request interceptor - token eklemek için
@@ -19,17 +22,28 @@ axiosInstance.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+    
+    // CORS için headers ekle
+    config.headers["Access-Control-Allow-Origin"] = "*";
+    
+    console.log("API Request:", config.method, config.url);
     return config;
   },
   (error) => {
+    console.error("API Request Error:", error);
     return Promise.reject(error);
   }
 );
 
 // Response interceptor - hata yönetimi için
 axiosInstance.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    console.log("API Response Success:", response.status);
+    return response;
+  },
   (error) => {
+    console.error("API Response Error:", error.message, error.response?.status);
+    
     // 401 hatasını Login bileşeni ele alsın, yönlendirme yapma
     if (error.response?.status === 401) {
       console.warn(
