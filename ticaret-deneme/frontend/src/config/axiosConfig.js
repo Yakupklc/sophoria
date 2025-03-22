@@ -1,9 +1,13 @@
 import axios from "axios";
 
+// Log environment
+console.log("Environment:", import.meta.env.MODE);
+console.log("Is prod?", import.meta.env.PROD);
+
 // API URL'sini ortama göre belirleme
 const baseURL = import.meta.env.DEV 
   ? import.meta.env.VITE_API_URL || "http://localhost:5001/api"
-  : "/api"; // Üretimde Netlify function proxy'sini kullanacak
+  : "";  // Boş bırakarak rölatif URL kullan
 
 console.log("Current API baseURL:", baseURL);
 
@@ -21,6 +25,11 @@ axiosInstance.interceptors.request.use(
     const token = localStorage.getItem("token");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
+    }
+    
+    // Production ortamında tam yol oluştur
+    if (import.meta.env.PROD && !config.url.startsWith('/api/')) {
+      config.url = `/api${config.url}`;
     }
     
     console.log("API Request:", config.method, config.url);
