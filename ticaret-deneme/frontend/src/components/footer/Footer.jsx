@@ -7,9 +7,9 @@ const Footer = () => {
       <div className="footer-content">
         <div className="footer-section">
           <h3>Hakkımızda</h3>
-          <p>SOPHORIA kullanıma açık bir site değildir, eğlencesine yapılan bir projedir</p>
-          <p>Site içeriğini görmek ve denemek için "email:konuk@gmail.com & şifre:konuk123" hesabından giriş yapabilir ya da register sayfasından kendi hesabınızı oluşturabilirsiniz</p>
-          <p className="created-by">Created BY Jacop</p>
+          <p>Sophoria: Dünyada giyinmenin en pahalı yolu! Burada alışveriş yapmak değil, alışveriş yapacakmış gibi hissetmek bile lüks.</p>
+          <p>Biz kredi kartınızı uçurduğumuzda gülümsemeyi hiç bırakmayan tek e-ticaret sitesiyiz.</p>
+          <p className="created-by">Gerçek bir yatırımcı kadar ciddi olsaydık, bu notu göremezdiniz - Jacop</p>
         </div>
         
         <div className="footer-section">
@@ -25,15 +25,15 @@ const Footer = () => {
         <div className="footer-section">
           <h3>İletişim</h3>
           <ul>
-            <li>Telefon: (533) 488-3185</li>
-            <li>Email: yakupkilic876@gmail.com</li>
-            <li>Adres: Edirne, Merkez</li>
+            <li>Telefon: (533) 488-3185 📱</li>
+            <li>Email: yakupkilic876@gmail.com ✉️</li>
+            <li>Adres: Edirne, Merkez 📍</li>
           </ul>
         </div>
       </div>
       
       <div className="footer-bottom">
-        <p>© 2024 E-Ticaret Sitesi. Tüm hakları saklıdır.</p>
+        <p>© 2024 Sophoria. Tüm hakları saklıdır. (Tasarruf etme hakkınız hariç) 💰</p>
       </div>
     </footer>
   );
