@@ -1,0 +1,28 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Ürün resimleri için kurallar
+    match /products/{imageId} {
+      // Herkes ürün resimlerini okuyabilir
+      allow read: if true;
+      // Sadece admin ürün resimlerini yükleyebilir/güncelleyebilir/silebilir
+      allow write: if request.auth != null && request.auth.token.admin == true;
+    }
+    
+    // Kullanıcı resimleri için kurallar
+    match /users/{userId}/{imageId} {
+      // Kullanıcılar kendi resimlerini görüntüleyebilir
+      allow read: if request.auth != null && request.auth.uid == userId;
+      // Kullanıcılar kendi resimlerini yükleyebilir
+      allow write: if request.auth != null && request.auth.uid == userId;
+      // Admin tüm kullanıcı resimlerine erişebilir
+      allow read, write: if request.auth != null && request.auth.token.admin == true;
+    }
+    
+    // Diğer tüm dosyalar için kurallar
+    match /{allPaths=**} {
+      // Varsayılan olarak tüm okuma/yazma işlemlerini reddet
+      allow read, write: if false;
+    }
+  }
+} 

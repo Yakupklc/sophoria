@@ -1,0 +1,39 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Giriş yapmış kullanıcılar ürünleri okuyabilir
+    match /products/{productId} {
+      allow read: if true;  // Herkes ürünleri görebilir
+      allow write: if request.auth != null && request.auth.token.admin == true;  // Sadece admin yazabilir
+    }
+    
+    // Kullanıcı verileri için kurallar
+    match /users/{userId} {
+      // Kullanıcılar kendi verilerini okuyabilir/yazabilir
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      // Admin tüm kullanıcılara erişebilir
+      allow read, write: if request.auth != null && request.auth.token.admin == true;
+    }
+    
+    // Siparişler için kurallar
+    match /orders/{orderId} {
+      // Kullanıcılar kendi siparişlerini görebilir
+      allow read: if request.auth != null && 
+                    (resource.data.userId == request.auth.uid || 
+                     request.auth.token.admin == true);
+      
+      // Kullanıcılar sadece kendi siparişlerini oluşturabilir
+      allow create: if request.auth != null && 
+                      request.resource.data.userId == request.auth.uid;
+      
+      // Sadece admin siparişleri güncelleyebilir veya silebilir
+      allow update, delete: if request.auth != null && request.auth.token.admin == true;
+    }
+    
+    // Diğer tüm belgeler/koleksiyonlar için kurallar
+    match /{document=**} {
+      // Varsayılan olarak tüm okuma/yazma işlemlerini reddet
+      allow read, write: if false;
+    }
+  }
+} 
